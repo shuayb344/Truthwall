@@ -6,7 +6,9 @@ export const {
   PORT,
   MONGO_URI,
   CLIENT_URL,
-  JWT_EXPIRES_IN
+  JWT_EXPIRES_IN,FIREBASE_PROJECT_ID,
+  FIREBASE_CLIENT_EMAIL,
+  FIREBASE_PRIVATE_KEY
 } = process.env;
 
 if (!process.env.JWT_SECRET) {
