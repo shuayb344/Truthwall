@@ -3,13 +3,14 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET } from "../config/env.js";
 import User from "../models/User.js";
 import { AppError } from "../utils/appError.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
 interface JwtPayload {
   id: string;
 }
 
-export const protect = async (req: Request, res: Response, next: NextFunction) : Promise<void> => {
-  try{
+export const protect = asyncHandler(async (req: Request, res: Response, next: NextFunction) : Promise<void> => {
+
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       throw new AppError("Not authorized, token missing", 401);
@@ -24,12 +25,5 @@ export const protect = async (req: Request, res: Response, next: NextFunction) :
 
     req.user = user;
     next();
-  } catch (error) {
-    if (error instanceof AppError) {
-      res.status(error.statusCode).json({ error: error.message });
-      return;
-    }
-    // Handles jwt.verify failures (expired, invalid signature, etc.)
-    res.status(401).json({ error: "Invalid or expired token" });
-  }
-}
+ 
+});
