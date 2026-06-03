@@ -6,6 +6,7 @@ import { CLIENT_URL, PORT, } from "./config/env.js";
 import connectDB from "./config/db.js";
 import authRouter from "./routes/auth.routes.js";
 import errorMiddleware from "./middleware/error.middleware.js";
+import  postRouter  from "./routes/post.routes.js";
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use("/api", authRouter);
+app.use("/api", postRouter);
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello, Truthwall!" });
