@@ -3,6 +3,27 @@ import { AppError } from "../utils/appError.js";
 import type { CreatePostInput , FeedQueryInput } from "../validators/post.validator.js";
 import type { IUser } from "../models/User.js";
 
+
+const buildTrendingPipeline = (filter: Record<string, any>, skip: number, limit: number) => {
+  const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000);
+  return Post.aggregate([
+    { $match: filter},
+    { $addFields: {
+      trendingScore: {
+        $add: [
+          "$reactionCounts.feel_this",
+          "$reactionCounts.not_alone",
+          "$reactionCounts.stay_strong",
+          "$reactionCounts.sending_strength",
+           { $cond: [{ $gte: ["$createdAt", last24Hours] }, 10, 0] }
+        ]
+    }}},
+    {$sort: { trendingScore: -1, createdAt: -1 } },
+    { $skip: skip },
+    { $limit: limit }
+  ])
+}
+
 export const createPost = async (body: CreatePostInput, user: IUser) => {
   const post = await Post.create({
     content: body.content,
@@ -15,7 +36,10 @@ export const createPost = async (body: CreatePostInput, user: IUser) => {
 };
 
 export const getFeed = async (query: FeedQueryInput) => {
-  const { category, page , limit  } = query;
+  const category = query.category;
+  const sort = query.sort ?? "latest";
+  const page = Number(query.page) || 1;
+  const limit = Number(query.limit) || 10;
   const skip = (page - 1) * limit;
   const filter : Record<string, any> = {
     $or:[
@@ -26,12 +50,16 @@ export const getFeed = async (query: FeedQueryInput) => {
   if(category){
     filter.category = category;
   }
-  const [posts, total] = await Promise.all([
-    Post.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit),
-    Post.countDocuments(filter)
-  ]);
+  const total = await Post.countDocuments(filter);
+  let posts;
+  if(sort === "trending"){
+    posts = await buildTrendingPipeline(filter, skip, limit);
+  } else {
+    posts = await Post.find(filter).sort({ createdAt: -1 }).skip(skip).limit(limit);
+  }
+  
 
-  return { posts, pagination: { page, limit, total, totalPages: Math.ceil(total / limit) } };
+  return { posts, pagination: { page, limit, total, totalPages: Math.ceil(total / limit),hasNextPage: page < Math.ceil(total / limit) ,hasPrevPage: page > 1 } };
 };
 
 export const getPostById = async (postId: string) => {
