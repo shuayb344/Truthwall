@@ -8,6 +8,7 @@ import authRouter from "./routes/auth.routes.js";
 import errorMiddleware from "./middleware/error.middleware.js";
 import  postRouter  from "./routes/post.routes.js";
 import commentRouter from "./routes/comment.routes.js";
+import uploadRouter from "./routes/upload.routes.js";
 
 const app = express();
 
@@ -22,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api", authRouter);
 app.use("/api", postRouter);
 app.use("/api/posts/:id", commentRouter);
-
+app.use("/api/upload", uploadRouter);
 app.get("/", (req, res) => {
   res.json({ message: "Hello, Truthwall!" });
 });
