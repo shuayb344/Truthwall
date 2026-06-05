@@ -5,6 +5,7 @@ export const createPostSchema = z.object({
   content: z.string().min(1, "Content is required").max(5000, "Content must be at most 5000 characters"),
   category: z.enum(categories, { message: "invalid category" }),
   isPermanent: z.boolean().optional().default(false),
+  image : z.url("Image must be a valid URL").optional(),
 });
 export const postParamSchema = z.object({
   id: z.string().min(1, "Post ID is required"),
