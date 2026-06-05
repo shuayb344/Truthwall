@@ -31,6 +31,7 @@ export const createPost = async (body: CreatePostInput, user: IUser) => {
     isPermanent: body.isPermanent,
     authorId: user._id,
     authorAlias: user.alias,
+    image: body.image ?? "",
   });
   return post;
 };
