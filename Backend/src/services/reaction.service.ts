@@ -3,6 +3,15 @@ import Reaction from "../models/Reaction.js";
 import type { IUser } from "../models/User.js";
 import type { ReactionInput } from "../validators/comment,validator.js";
 import { AppError } from "../utils/appError.js";
+import { createNotification } from "./notification.service.js";
+
+
+const reactionMessages: Record<string, string> = {
+  feel_this: "Someone felt your truth 🤝",
+  not_alone: "Someone reminded you — you're not alone 💙",
+  stay_strong: "Someone told you to stay strong 💪",
+  sending_strength: "Someone is sending you strength ✨",
+};
 
 export const toogleReaction = async (
   user: IUser,
@@ -39,9 +48,19 @@ export const toogleReaction = async (
       type
     });
     await Post.findByIdAndUpdate(postId, {$inc: { [`reactionsCount.${type}`]: 1 }});
+    const isOwner = post.authorId.toString() === user._id.toString();
+    if (!isOwner){
+      await createNotification({
+        userId: post.authorId.toString(),
+        message: reactionMessages[type]??`${user.alias} reacted to your post`,
+        type: "reaction",
+        postId
+      });
     return { message: "Reaction added" ,
       type,
       reactionCounts: (await Post.findById(postId))?.reactionCounts
     };
   } 
 }
+}
+

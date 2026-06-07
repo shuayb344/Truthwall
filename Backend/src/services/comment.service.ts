@@ -3,6 +3,7 @@ import Post from "../models/Post.js";
 import { AppError } from "../utils/appError.js";
 import  type { IUser }  from "../models/User.js";
 import type { CreateCommentInput, CommentQueryInput } from "../validators/comment,validator.js";
+import { createNotification } from "./notification.service.js";
 
 export const createComment = async (user: IUser, postId: string, body: CreateCommentInput): Promise<unknown> => {
   const post = await Post.findById(postId);
@@ -19,6 +20,17 @@ export const createComment = async (user: IUser, postId: string, body: CreateCom
     content: body.content,
   });
   await Post.findByIdAndUpdate(postId, { $inc: { commentCount: 1 } });
+
+  const isOwner = post.authorId.toString() === user._id.toString();
+  if (!isOwner){
+    await createNotification({
+      userId: post.authorId.toString(),
+      message: `${user.alias} commented on your post`,
+      type: "comment",
+      postId
+    });
+
+  }
   return comment;
 }
 
