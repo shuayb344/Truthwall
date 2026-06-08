@@ -11,6 +11,7 @@ export interface IUser extends Document {
   createdAt: Date;
   updatedAt: Date;
   role : "user" | "admin";
+  isBanned: boolean;
 }
 
 export const UserSchema: Schema = new Schema<IUser>({
@@ -20,7 +21,8 @@ export const UserSchema: Schema = new Schema<IUser>({
   alias: { type: String, required: true , unique: true , default: generateAlias },
   avatarUrl: { type: String , default: "https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y" },
   empathyScore: { type: Number, default: 0 },
-  role : {type : String , enum : ["user" , "admin"] , default : "user"}
+  role : {type : String , enum : ["user" , "admin"] , default : "user"},
+  isBanned: { type: Boolean, default: false }
 }, {
   timestamps: true,
 });

@@ -17,6 +17,11 @@ export interface IPost extends Document {
   commentCount: number;
   expiresAt: Date;
   isPermanent: boolean;
+  crisis: {
+    flagged: boolean;
+    severity: "low" | "medium" | "high" | null;
+  };
+
   createdAt: Date;
 }
 
@@ -36,6 +41,10 @@ const PostSchema= new Schema<IPost>(
     commentCount: { type: Number, default: 0 },
     expiresAt: { type: Date , default: () => new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)},
     isPermanent: { type: Boolean, default: false },
+    crisis: {
+      flagged: { type: Boolean, default: false },
+      severity: { type: String, enum: ["low", "medium", "high", null], default: null }
+    }
   },
   { timestamps:true }
 );
@@ -43,6 +52,7 @@ const PostSchema= new Schema<IPost>(
 PostSchema.index({category: 1, createdAt: -1 });
 PostSchema.index({createdAt: -1 });
 PostSchema.index({expiresAt: 1 });
+PostSchema.index({ "crisis.flagged": 1 });
 
 const Post = mongoose.model<IPost>("Post", PostSchema);
 
