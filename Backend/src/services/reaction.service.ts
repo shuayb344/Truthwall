@@ -4,6 +4,7 @@ import type { IUser } from "../models/User.js";
 import type { ReactionInput } from "../validators/comment,validator.js";
 import { AppError } from "../utils/appError.js";
 import { createNotification } from "./notification.service.js";
+import { decrementEmpathyScore , incrementEmpathyScore } from "./empathy.service.js";
 
 
 const reactionMessages: Record<string, string> = {
@@ -27,6 +28,7 @@ export const toogleReaction = async (
   }
   const { type } = body;
   const userId = user._id;
+   const isOwner = post.authorId.toString() === user._id.toString();
   const existingReaction = await Reaction.findOne({
     userId,
     postId
@@ -35,6 +37,10 @@ export const toogleReaction = async (
     if (existingReaction.type === type) {
       await existingReaction.deleteOne();
       await Post.findByIdAndUpdate(postId, {$inc: { [`reactionsCount.${existingReaction.type}`]: -1 }});
+      if (!isOwner){
+        await decrementEmpathyScore(post.authorId.toString());
+      }
+
       return { message: "Reaction removed" ,
         type: existingReaction.type,
         reactionCounts: (await Post.findById(postId))?.reactionCounts
@@ -50,6 +56,7 @@ export const toogleReaction = async (
     await Post.findByIdAndUpdate(postId, {$inc: { [`reactionsCount.${type}`]: 1 }});
     const isOwner = post.authorId.toString() === user._id.toString();
     if (!isOwner){
+      await incrementEmpathyScore(post.authorId.toString());
       await createNotification({
         userId: post.authorId.toString(),
         message: reactionMessages[type]??`${user.alias} reacted to your post`,

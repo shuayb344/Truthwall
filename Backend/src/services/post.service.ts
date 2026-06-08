@@ -2,6 +2,7 @@ import Post from "../models/Post.js";
 import { AppError } from "../utils/appError.js";
 import type { CreatePostInput , FeedQueryInput } from "../validators/post.validator.js";
 import type { IUser } from "../models/User.js";
+import detectCrisis from "../utils/detectCrisis.js";
 
 
 const buildTrendingPipeline = (filter: Record<string, any>, skip: number, limit: number) => {
@@ -25,13 +26,18 @@ const buildTrendingPipeline = (filter: Record<string, any>, skip: number, limit:
 }
 
 export const createPost = async (body: CreatePostInput, user: IUser) => {
+  const crisisResult = detectCrisis(body.content);
   const post = await Post.create({
     content: body.content,
     category: body.category,
-    isPermanent: body.isPermanent,
+    isPermanent: body.isPermanent || crisisResult.crisis,
     authorId: user._id,
     authorAlias: user.alias,
     image: body.image ?? "",
+    crisis: {
+      flagged: crisisResult.crisis,
+      severity: crisisResult.severity
+    }
   });
   return post;
 };
