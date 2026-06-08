@@ -21,4 +21,3 @@ export const FIREBASE_PRIVATE_KEY = requireEnv("FIREBASE_PRIVATE_KEY");
 export const CLOUDINARY_CLOUD_NAME = requireEnv("CLOUDINARY_CLOUD_NAME");
 export const CLOUDINARY_API_KEY = requireEnv("CLOUDINARY_API_KEY");
 export const CLOUDINARY_API_SECRET = requireEnv("CLOUDINARY_API_SECRET");
-export const OPENAI_API_KEY = requireEnv("OPENAI_API_KEY");
