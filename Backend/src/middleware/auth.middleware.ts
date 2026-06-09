@@ -22,6 +22,9 @@ export const protect = asyncHandler(async (req: Request, res: Response, next: Ne
     if (!user) {
       throw new AppError("Not authorized, user not found", 401);
     }
+    if (user.isBanned) {
+      throw new AppError("Your account has been banned. Please contact support for more information.", 403);
+    }
 
     req.user = user;
     next();
