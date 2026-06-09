@@ -11,14 +11,17 @@ import  postRouter  from "./routes/post.routes.js";
 import commentRouter from "./routes/comment.routes.js";
 import uploadRouter from "./routes/upload.routes.js";
 import notificationRouter from "./routes/notification.routes.js";
-import { ppid } from "node:process";
+import startCronJobs from "./utils/cronJobs.js";
 import { createServer } from "http";
+import bookmarkRouter from "./routes/bookmark.routes.js";
+import adminRouter from "./routes/admin.routes.js";
 
 const app = express();
 const httpServer = createServer(app)
 
 await connectDB();
 initSocket(httpServer);
+startCronJobs();
 
 
 app.use(helmet());
@@ -32,10 +35,14 @@ app.use("/api", postRouter);
 app.use("/api/posts/:id", commentRouter);
 app.use("/api/upload", uploadRouter);
 app.use("/api/notifications", notificationRouter);
+app.use("/api/bookmarks", bookmarkRouter);
+app.use("/api/admin", adminRouter);
+ 
 
-app.get("/", (req, res) => {
-  res.json({ message: "Hello, Truthwall!" });
+app.use((_req, res) => {
+  res.status(404).json({ error: "Route not found" });
 });
+
 
 app.use(errorMiddleware);
 
