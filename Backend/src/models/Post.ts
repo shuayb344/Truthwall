@@ -1,6 +1,4 @@
 import mongoose, { Schema, Document } from "mongoose";
-import { create } from "node:domain";
-import { ca } from "zod/locales";
 
 export interface IPost extends Document {
   content: string;

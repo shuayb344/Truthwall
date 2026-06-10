@@ -40,10 +40,10 @@ export const initSocket = (httpServer: HTTPServer): Server => {
 };
 
 export const sendNotificationToUser = (userId: string, notification: INotification) => {
-  const sockerId = connectedUsers.get(userId);
-  if (sockerId && io) {
-    io.to(sockerId).emit("notification", notification);
-    console.log(`Sent notification to user ${userId} on socket ${sockerId}`);
+  const socketId = connectedUsers.get(userId);
+  if (socketId && io) {
+    io.to(socketId).emit("notification", notification);
+    console.log(`Sent notification to user ${userId} on socket ${socketId}`);
   } else {
     console.log(`User ${userId} is not connected, cannot send notification`);
   }

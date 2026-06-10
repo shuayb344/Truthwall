@@ -3,7 +3,7 @@ import cron from "node-cron";
 import Post from "../models/Post.js";
  
 const startCronJobs = (): void => {
-  // ─── Expire posts every hour ───────────────────────────────
+
   cron.schedule("0 * * * *", async () => {
     try {
       const result = await Post.deleteMany({

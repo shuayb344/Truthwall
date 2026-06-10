@@ -4,7 +4,6 @@ import {AppError} from "../utils/appError.js";
 const ALLOWED_TYPES = ["image/jpeg", "image/png", "image/webp"];
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
  
-// Store file in memory — we stream directly to Cloudinary, no disk needed
 const storage = multer.memoryStorage();
  
 const fileFilter = (

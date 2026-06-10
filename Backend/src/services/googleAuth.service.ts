@@ -19,7 +19,7 @@ export const googleSignIn = async ({ idToken }: GoogleAuthInput) => {
  
   let decodedToken;
   try {
-    decodedToken = await admin.auth().verifyIdToken(idToken);
+    decodedToken = await admin.auth().verifyIdToken(idToken);idToken
   } catch {
     throw new AppError("Invalid Google token", 401);
   }
