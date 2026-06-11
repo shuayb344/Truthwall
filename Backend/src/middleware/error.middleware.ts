@@ -19,7 +19,7 @@ const errorMiddleware = (err: any, req: Request, res: Response, next: NextFuncti
         if (err.name === "TokenExpiredError") {
             error = handleJWTExpiredError();
         }
-        res.status(error.statusCode || 500).json({ message: error.message || "Internal server error" });
+        res.status(error.statusCode || 500).json({ error: error.message || "Internal server error" });
     } catch (error) {
         next(error);
     }
