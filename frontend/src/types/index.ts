@@ -13,6 +13,7 @@ export type ReactionType = "feel_this" | "not_alone" | "stay_strong" | "sending_
  
 export interface Post {
   _id: string;
+  isBookmarked?: boolean;
   content: string;
   image?: string;
   category: Category;
