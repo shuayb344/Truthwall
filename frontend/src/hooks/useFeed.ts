@@ -1,27 +1,24 @@
-import type { FeedResponse } from "@/types"
-import { useInfiniteQuery } from "@tanstack/react-query"
-import api from "@/lib/axios"
-import type { Category } from "@/types"
-import type { SortMode } from "@/types/feed"
+import { useInfiniteQuery } from "@tanstack/react-query";
+import { fetchFeed } from "@/api/postApi";
 
-const LIMIT = 10
+interface UseFeedOptions {
+  category?: string;
+  sort?: "latest" | "trending";
+  limit?: number;
+}
 
-export const useFeed = (category: Category | "all", sort: SortMode) => {
-  return useInfiniteQuery<FeedResponse>({
+export const useFeed = ({ category, sort = "latest", limit = 10 }: UseFeedOptions) => {
+  return useInfiniteQuery({
     queryKey: ["feed", category, sort],
-    initialPageParam: 1,
-    queryFn: async ({ pageParam }) => {
-      const params = new URLSearchParams({
-        page: String(pageParam),
-        limit: String(LIMIT),
+    queryFn: ({ pageParam = 1 }) =>
+      fetchFeed({
+        page: pageParam,
+        limit,
+        category: category || undefined,
         sort,
-        ...(category !== "all" ? { category } : {}),
-      })
-      const response = await api.get(`/posts?${params.toString()}`)
-      return response.data
-    },
+      }),
     getNextPageParam: (lastPage) =>
       lastPage.pagination.hasNextPage ? lastPage.pagination.page + 1 : undefined,
-    
-  })
-}
+    initialPageParam: 1,
+  });
+};
