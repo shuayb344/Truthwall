@@ -10,6 +10,8 @@ const LandingPage = () => {
   const navigate = useNavigate();
   const { isAuthenticated } = useAuthStore();
 
+
+
   const handleCTA = () => {
     if (isAuthenticated) {
       navigate("/feed");
@@ -19,7 +21,7 @@ const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0F] text-[#EEEEF5] overflow-x-hidden">
+    <div className="min-h-screen bg-[#0A0A0F] text-[#EEEEF5] overflow-x-hidden scrollbar-hide">
       <LandingNavbar onGetStarted={handleCTA} />
       <LandingHero onCTA={handleCTA} />
       <LandingSamplePosts onCTA={handleCTA} />

@@ -8,6 +8,7 @@ import AuthLeftPanel from "@/components/auth/AuthLeftPanel";
 import AuthSocial from "@/components/auth/AuthSocial";
 import LoginForm from "@/components/auth/LoginForm";
 import RegisterForm from "@/components/auth/RegisterForm";
+import logo from "@/assets/logo.png";
 
 const AuthPage = () => {
   const navigate = useNavigate();
@@ -43,6 +44,7 @@ const AuthPage = () => {
         <div className="w-full max-w-md">
           {/* Logo */}
           <div className="text-center mb-8">
+            <img src={logo} alt="Logo" className="w-12 h-12 mx-auto mb-3" />
             <span className="text-2xl font-bold">
               Truth<span className="text-[#7C6FF7]">Wall</span>
             </span>
