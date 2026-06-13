@@ -6,7 +6,7 @@ import { validate } from "../middleware/validate.middleware.js";
 
 const router = Router();
 
-router.post("/:id", protect, validate({params :bookmarkParamsSchema}), toggleBookmarkHandler);
+router.post("/:postId", protect, validate({ params: bookmarkParamsSchema }), toggleBookmarkHandler);
 router.get("/", protect, getBookmarksHandler);
 
 export default router;

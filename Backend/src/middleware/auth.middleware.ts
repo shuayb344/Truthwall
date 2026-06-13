@@ -30,3 +30,24 @@ export const protect = asyncHandler(async (req: Request, res: Response, next: Ne
     next();
  
 });
+
+export const optionalProtect = asyncHandler(async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const authHeader = req.headers.authorization;
+  if (!authHeader || !authHeader.startsWith("Bearer ")) {
+    return next();
+  }
+
+  try {
+    const token = authHeader.split(" ")[1] as string;
+    const decoded = jwt.verify(token, JWT_SECRET!) as unknown as JwtPayload;
+    const user = await User.findById(decoded.id).select("-password");
+    
+    if (user && !user.isBanned) {
+      req.user = user;
+    }
+  } catch (err) {
+    // Silently fail for optional protect
+  }
+  
+  next();
+});

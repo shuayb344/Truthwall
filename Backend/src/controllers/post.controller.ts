@@ -8,12 +8,12 @@ export const createPostController = asyncHandler(async (req: Request, res: Respo
 });
 
 export const getFeedController = asyncHandler(async (req: Request, res: Response) => {
-  const feed = await getFeed(req.query as any );
+  const feed = await getFeed(req.query as any, req.user);
   res.status(200).json(feed);
 });
 
 export const getPostByIdController = asyncHandler(async (req: Request, res: Response) => {
-  const post = await getPostById(req.params.id as string);
+  const post = await getPostById(req.params.id as string, req.user);
   res.status(200).json(post);
 });
 

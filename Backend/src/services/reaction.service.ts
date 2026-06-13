@@ -14,7 +14,7 @@ const reactionMessages: Record<string, string> = {
   sending_strength: "Someone is sending you strength ✨",
 };
 
-export const toogleReaction = async (
+export const toggleReaction = async (
   user: IUser,
   body: ReactionInput,
   postId: string
@@ -36,38 +36,58 @@ export const toogleReaction = async (
   if (existingReaction) {
     if (existingReaction.type === type) {
       await existingReaction.deleteOne();
-      await Post.findByIdAndUpdate(postId, {$inc: { [`reactionsCount.${existingReaction.type}`]: -1 }});
-      if (!isOwner){
+      await Post.findByIdAndUpdate(postId, {
+        $inc: { [`reactionCounts.${existingReaction.type}`]: -1 },
+      });
+      if (!isOwner) {
         await decrementEmpathyScore(post.authorId.toString());
       }
 
-      return { message: "Reaction removed" ,
+      return {
+        message: "Reaction removed",
         type: existingReaction.type,
-        reactionCounts: (await Post.findById(postId))?.reactionCounts
+        reactionCounts: (await Post.findById(postId))?.reactionCounts,
+      };
+    } else {
+      // Switch reaction type
+      const oldType = existingReaction.type;
+      existingReaction.type = type;
+      await existingReaction.save();
+
+      await Post.findByIdAndUpdate(postId, {
+        $inc: {
+          [`reactionCounts.${oldType}`]: -1,
+          [`reactionCounts.${type}`]: 1,
+        },
+      });
+
+      return {
+        message: "Reaction updated",
+        type,
+        reactionCounts: (await Post.findById(postId))?.reactionCounts,
       };
     }
-
   } else {
     await Reaction.create({
       userId,
       postId,
       type
     });
-    await Post.findByIdAndUpdate(postId, {$inc: { [`reactionsCount.${type}`]: 1 }});
-    const isOwner = post.authorId.toString() === user._id.toString();
-    if (!isOwner){
+    await Post.findByIdAndUpdate(postId, { $inc: { [`reactionCounts.${type}`]: 1 } });
+    if (!isOwner) {
       await incrementEmpathyScore(post.authorId.toString());
       await createNotification({
         userId: post.authorId.toString(),
-        message: reactionMessages[type]??`${user.alias} reacted to your post`,
+        message: reactionMessages[type] ?? `${user.alias} reacted to your post`,
         type: "reaction",
-        postId
+        postId,
       });
-    return { message: "Reaction added" ,
+    }
+    return {
+      message: "Reaction added",
       type,
-      reactionCounts: (await Post.findById(postId))?.reactionCounts
+      reactionCounts: (await Post.findById(postId))?.reactionCounts,
     };
-  } 
-}
-}
+  }
+};
 

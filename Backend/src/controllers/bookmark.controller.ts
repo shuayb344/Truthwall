@@ -7,7 +7,7 @@ export const toggleBookmarkHandler = asyncHandler(async (req: Request, res: Resp
   if (!req.user) {
     throw new AppError("Unauthorized", 401);
   }
-  const result = await toggleBookmark(req.user, req.params.id as string);
+  const result = await toggleBookmark(req.user, req.params.postId as string);
   res.status(200).json(result);
 });
 

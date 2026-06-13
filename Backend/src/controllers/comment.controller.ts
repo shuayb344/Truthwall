@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
-import { toogleReaction } from '../services/reaction.service.js';
+import { toggleReaction } from '../services/reaction.service.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
-import {createComment, getComments} from '../services/comment.service.js';
+import { createComment, getComments } from '../services/comment.service.js';
 
 
 export const createCommentHandler = asyncHandler(async (req: Request, res: Response) => {
@@ -17,6 +17,6 @@ export const getCommentsHandler = asyncHandler(async (req: Request, res: Respons
 });
 export const toggleReactionHandler = asyncHandler(async (req: Request, res: Response) => {
   const postId = req.params.id as string;
-  const result = await toogleReaction(req.user!, req.body, postId);
-  res.status(200).json({ success: true, data: result });
+  const result = await toggleReaction(req.user!, req.body, postId);
+  res.status(200).json(result);
 });
