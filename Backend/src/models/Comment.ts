@@ -4,6 +4,8 @@ interface IComment extends Document {
     authorId: mongoose.Types.ObjectId;
     authorAlias: string;
     content: string;
+    parentId: mongoose.Types.ObjectId | null;
+    likesCount: number;
     createdAt: Date;
 }
 
@@ -13,9 +15,12 @@ const CommentSchema = new Schema<IComment>(
         authorId: { type: Schema.Types.ObjectId, ref: "User", required: true },
         authorAlias: { type: String, required: true },
         content: { type: String, required: true, maxlength: 2000 , trim:true },
+        parentId: { type: Schema.Types.ObjectId, ref: "Comment", default: null },
+        likesCount: { type: Number, default: 0 },
     },
     { timestamps:true }
 );
+
 
 CommentSchema.index({ postId: 1, createdAt: -1 });
 

@@ -25,7 +25,7 @@ export interface IPost extends Document {
 
 const PostSchema= new Schema<IPost>(
   {
-    content: { type: String, required: true, maxlength: 5000 , trim: true },
+    content: { type: String, required: true, maxlength: 1000 , trim: true },
     image: { type: String , default: null },
     category: { type: String, enum: ["mental-health", "relationships", "work", "family", "identity"], required: true },
     authorId: { type: Schema.Types.ObjectId, ref: "User", required: true },

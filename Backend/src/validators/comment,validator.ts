@@ -2,7 +2,8 @@ import { z } from "zod";
 const reactionTypes = ["feel_this", "not_alone", "stay_strong", "sending_strength"] as const;
 
 export const createCommentSchema = z.object({
-  content:z.string().min(1,"Comment is required").max(2000,"Comment is too long").trim()
+  content:z.string().min(1,"Comment is required").max(2000,"Comment is too long").trim(),
+  parentId: z.string().optional()
 })
 export const reactionSchema = z.object({
   type: z.enum(reactionTypes, "Invalid reaction type")
