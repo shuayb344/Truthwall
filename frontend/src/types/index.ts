@@ -34,8 +34,12 @@ export interface Comment {
   postId: string;
   authorAlias: string;
   content: string;
+  parentId: string | null;
+  likesCount: number;
+  isLiked?: boolean;
   createdAt: string;
 }
+
  
 
 export type NotificationType = "reaction" | "comment";
