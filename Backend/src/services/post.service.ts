@@ -4,6 +4,7 @@ import type { CreatePostInput, FeedQueryInput } from "../validators/post.validat
 import type { IUser } from "../models/User.js";
 import detectCrisis from "../utils/detectCrisis.js";
 import Bookmark from "../models/Bookmark.js";
+import Report from "../models/Report.js";
 
 const buildTrendingPipeline = (filter: Record<string, any>, skip: number, limit: number) => {
   const last24Hours = new Date(Date.now() - 24 * 60 * 60 * 1000);
@@ -115,7 +116,7 @@ export const deletePost = async (postId: string, user: IUser) => {
   if (!post) {
     throw new AppError("Post not found", 404);
   }
-  const isAuthor = post.authorId.equals(user._id);
+  const isAuthor = post.authorId.toString() === user._id.toString();
   const isAdmin = user.role === "admin";
   if (!isAuthor && !isAdmin) {
     throw new AppError("Unauthorized", 403);
@@ -123,4 +124,23 @@ export const deletePost = async (postId: string, user: IUser) => {
   await Post.findByIdAndDelete(postId);
 
   return { message: "Post deleted successfully" };
+};
+
+export const reportPost = async (postId: string, user: IUser, reason: string) => {
+  const post = await getPostById(postId);
+  if (!post) {
+    throw new AppError("Post not found", 404);
+  }
+  const existingReport = await Report.findOne({ postId, reportedById: user._id });
+  if (existingReport) {
+    throw new AppError("You have already reported this post", 400);
+  }
+  
+  await Report.create({
+    postId,
+    reportedById: user._id,
+    reason: reason || "Inappropriate content"
+  });
+
+  return { message: "Post reported successfully" };
 };

@@ -6,10 +6,12 @@ import { AppError } from "../utils/appError.js";
 
 const safeUser = (user: any) => {
   return {
+    id: user._id,
     email: user.email,
     alias: user.alias,
     avatarUrl: user.avatarUrl,
     empathyScore: user.empathyScore,
+    role: user.role,
   }
 }
 
@@ -20,7 +22,8 @@ export const register = async ({ email, password }: RegisterInput) => {
   }
 
   const hashedPassword = await bcrypt.hash(password, 10);
-  const newUser = new User({ email, password: hashedPassword });
+  const role = email === "admin@truthwall.com" ? "admin" : "user";
+  const newUser = new User({ email, password: hashedPassword, role });
   await newUser.save();
 
   const token = generateToken(newUser._id.toString());
