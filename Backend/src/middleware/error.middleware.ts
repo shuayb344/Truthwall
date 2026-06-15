@@ -1,28 +1,41 @@
 import type { Request, Response, NextFunction } from "express";
 
 const errorMiddleware = (err: any, req: Request, res: Response, next: NextFunction) => {
-    try {
-        let error = { ...err };
-        error.message = err.message;
-        if (err.code === 11000) {
-            error = handleDuplicateKeyError();
-        }
-        if (err.name === "ValidationError") {
-            error = handleValidationError();
-        }
-        if (err.name === "CastError") {
-            error = handleCastError();
-        }
-        if (err.name === "JsonWebTokenError") {
-            error = handleJWTError();
-        }
-        if (err.name === "TokenExpiredError") {
-            error = handleJWTExpiredError();
-        }
-        res.status(error.statusCode || 500).json({ error: error.message || "Internal server error" });
-    } catch (error) {
-        next(error);
+    console.error("ERROR 💥:", err);
+    
+    let statusCode = err.statusCode || 500;
+    let message = err.message || "Internal server error";
+
+    if (err.code === 11000) {
+        const error = handleDuplicateKeyError();
+        statusCode = error.statusCode;
+        message = error.message;
     }
+    if (err.name === "ValidationError") {
+        const error = handleValidationError();
+        statusCode = error.statusCode;
+        message = error.message;
+    }
+    if (err.name === "CastError") {
+        const error = handleCastError();
+        statusCode = error.statusCode;
+        message = error.message;
+    }
+    if (err.name === "JsonWebTokenError") {
+        const error = handleJWTError();
+        statusCode = error.statusCode;
+        message = error.message;
+    }
+    if (err.name === "TokenExpiredError") {
+        const error = handleJWTExpiredError();
+        statusCode = error.statusCode;
+        message = error.message;
+    }
+
+    res.status(statusCode).json({ 
+        error: message,
+        status: `${statusCode}`.startsWith('4') ? 'fail' : 'error'
+    });
 }
 
 export default errorMiddleware;
