@@ -26,13 +26,13 @@ const FeedSidebar = () => {
   return (
     <aside className="hidden lg:flex flex-col w-[220px] flex-shrink-0 sticky top-0 h-screen py-6 pr-4">
       {/* Logo */}
-      <Link to="/" className="flex items-center gap-2 px-3 mb-10">
-        <img src={logo} alt="Logo" className="w-8 h-8 rounded-lg object-contain" />
+      <Link to="/" className="flex items-center gap-1.5 px-3 mb-10 group">
+        <img src={logo} alt="Logo" className="w-8 h-8 rounded-lg object-contain transition-transform group-hover:scale-105" />
         <div>
-          <span className="font-bold text-base tracking-tight text-[#EEEEF5]">
-            Truth<span className="text-[#7C6FF7]">Wall</span>
+          <span className="font-heading text-text-aliasase tracking-tight text-[#F5F5F5]">
+            Truth<span className="text-[#E03030]">Wall</span>
           </span>
-          <p className="text-[10px] text-[#606078] leading-none">Digital Confessional</p>
+          <p className="text-[10px] text-[#555555] leading-none">Digital Confessional</p>
         </div>
       </Link>
 
@@ -48,20 +48,20 @@ const FeedSidebar = () => {
               key={item.path}
               onClick={() => navigate(item.path)}
               className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all group relative ${isActive
-                  ? "text-[#EEEEF5] bg-[#1C1C28]"
-                  : "text-[#A0A0B8] hover:text-[#EEEEF5] hover:bg-[#1C1C28]/50"
+                  ? "text-[#F5F5F5] bg-[#1A1A1A]"
+                  : "text-[#999999] hover:text-[#F5F5F5] hover:bg-[#1A1A1A]/50"
                 }`}
             >
               <div className="flex items-center gap-3">
                 {isActive && (
-                  <span className="absolute left-0 w-[3px] h-4 rounded-r-full bg-[#7C6FF7]" />
+                  <span className="absolute left-0 top-1/4 bottom-1/4 w-[2px] bg-gradient-to-b from-transparent via-[#E03030] to-transparent shadow-[0_0_8px_rgba(224,48,48,0.4)]" />
                 )}
-                <Icon className={`w-[18px] h-[18px] ${isActive ? "text-[#7C6FF7]" : ""}`} />
+                <Icon className={`w-[18px] h-[18px] ${isActive ? "text-[#E03030]" : ""}`} />
                 {item.label}
               </div>
 
               {item.isNotification && unreadCount > 0 && (
-                <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#7C6FF7] text-[10px] font-bold text-white transition-transform group-hover:scale-110">
+                <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#E03030] text-[10px] font-heading text-white transition-transform group-hover:scale-110">
                   {unreadCount > 99 ? "99+" : unreadCount}
                 </span>
               )}
@@ -74,7 +74,7 @@ const FeedSidebar = () => {
       {isAuthenticated && (
         <button
           onClick={() => navigate("/write")}
-          className="mx-3 mb-4 py-2.5 rounded-full bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white text-sm font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#7C6FF7]/20"
+          className="mx-3 mb-4 py-2.5 rounded-full bg-[#E03030] hover:bg-[#C42020] text-white text-sm font-semibold transition-all hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#E03030]/20"
         >
           New Confession
         </button>
@@ -82,20 +82,20 @@ const FeedSidebar = () => {
 
       {/* User badge */}
       {isAuthenticated && user ? (
-        <div className="mx-3 flex items-center gap-2.5 bg-[#12121A] border border-[#2A2A3E] rounded-xl px-3 py-2.5">
-          <div className="w-8 h-8 rounded-full bg-[#7C6FF7]/20 border border-[#7C6FF7]/30 flex items-center justify-center text-xs font-bold text-[#7C6FF7]">
+        <div className="mx-3 flex items-center gap-2.5 bg-[#111111] border border-[#2A2A2A] rounded-xl px-3 py-2.5">
+          <div className="w-8 h-8 rounded-full bg-[#E03030]/20 border border-[#E03030]/30 flex items-center justify-center text-xs font-heading text-[#E03030]">
             {user.alias.slice(0, 2).toUpperCase()}
           </div>
           <div className="min-w-0">
-            <p className="text-xs font-medium text-[#EEEEF5] truncate">{user.alias}</p>
-            <p className="text-[10px] text-[#606078]">♡ Empathy: {user.empathyScore.toLocaleString()}</p>
+            <p className="text-xs font-medium text-[#F5F5F5] truncate">{user.alias}</p>
+            <p className="text-[10px] text-[#555555]">♡ Empathy: {user.empathyScore.toLocaleString()}</p>
           </div>
           <button 
             onClick={() => {
               logout();
               navigate("/auth");
             }}
-            className="ml-auto p-1.5 rounded-lg text-[#606078] hover:text-rose-400 hover:bg-rose-500/10 transition-all"
+            className="ml-auto p-1.5 rounded-lg text-[#555555] hover:text-rose-400 hover:bg-rose-500/10 transition-all"
             title="Log Out"
           >
             <LogOut size={16} />
@@ -105,11 +105,11 @@ const FeedSidebar = () => {
         <div className="mx-3 flex flex-col gap-2">
           <button
             onClick={() => navigate("/auth")}
-            className="w-full py-2.5 rounded-full bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white text-sm font-semibold transition-all"
+            className="w-full py-2.5 rounded-full bg-[#E03030] hover:bg-[#C42020] text-white text-sm font-semibold transition-all"
           >
             Sign In
           </button>
-          <p className="text-[10px] text-[#606078] text-center">Sign in to post & react</p>
+          <p className="text-[10px] text-[#555555] text-center">Sign in to post & react</p>
         </div>
       )}
     </aside>

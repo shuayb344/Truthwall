@@ -46,7 +46,7 @@ const PostContent = ({ post, commentCount }: PostContentProps) => {
   const timeAgo = formatDistanceToNow(new Date(post.createdAt), { addSuffix: false });
 
   return (
-    <article className="rounded-2xl border border-[#2A2A3E] bg-[#12121A] overflow-hidden">
+    <article className="rounded-2xl border border-[#2A2A2A] bg-[#111111] overflow-hidden">
       {/* Crisis support banner */}
       {post.crisis?.flagged && <CrisisBanner className="px-6 py-3" />}
 
@@ -54,7 +54,7 @@ const PostContent = ({ post, commentCount }: PostContentProps) => {
         {/* Back button */}
         <button
           onClick={() => navigate(-1)}
-          className="inline-flex items-center gap-1.5 text-sm text-[#A0A0B8] hover:text-[#EEEEF5] transition-colors mb-4 group"
+          className="inline-flex items-center gap-1.5 text-sm text-[#999999] hover:text-[#F5F5F5] transition-colors mb-4 group"
         >
           <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" />
           Back
@@ -63,14 +63,14 @@ const PostContent = ({ post, commentCount }: PostContentProps) => {
         {/* Header: alias + time + menu */}
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#7C6FF7]/20 border border-[#7C6FF7]/30 flex items-center justify-center text-sm font-bold text-[#7C6FF7]">
+            <div className="w-10 h-10 rounded-full bg-[#E03030]/20 border border-[#E03030]/30 flex items-center justify-center text-sm font-heading text-[#E03030]">
               {post.authorAlias.slice(0, 2).toUpperCase()}
             </div>
             <div>
-              <span className="font-mono text-sm font-semibold text-[#9D8FFF]">
+              <span className="font-mono text-sm font-semibold text-[#FF6B6B]">
                 @{post.authorAlias}
               </span>
-              <p className="text-xs text-[#606078]">{timeAgo} ago</p>
+              <p className="text-xs text-[#555555]">{timeAgo} ago</p>
             </div>
           </div>
           <div className="flex items-center gap-1">
@@ -87,13 +87,13 @@ const PostContent = ({ post, commentCount }: PostContentProps) => {
             <div className="relative" ref={menuRef}>
               <button 
                 onClick={() => setShowMenu(!showMenu)}
-                className="p-2 rounded-lg text-[#606078] hover:text-[#A0A0B8] hover:bg-[#1C1C28] transition-all"
+                className="p-2 rounded-lg text-[#555555] hover:text-[#999999] hover:bg-[#1A1A1A] transition-all"
               >
                 <MoreHorizontal className="w-5 h-5" />
               </button>
               
               {showMenu && (
-                <div className="absolute right-0 mt-2 w-48 rounded-xl bg-[#1C1C28] border border-[#2A2A3E] shadow-xl overflow-hidden z-10 py-1">
+                <div className="absolute right-0 mt-2 w-48 rounded-xl bg-[#1A1A1A] border border-[#2A2A2A] shadow-xl overflow-hidden z-10 py-1">
                   {!isAuthor && (
                     <button
                       onClick={() => {
@@ -101,9 +101,9 @@ const PostContent = ({ post, commentCount }: PostContentProps) => {
                         setShowMenu(false);
                       }}
                       disabled={isReportPending}
-                      className="w-full flex items-center gap-2 px-4 py-3 text-sm text-[#C8C8D8] hover:bg-[#2A2A3E] transition-colors disabled:opacity-50 text-left"
+                      className="w-full flex items-center gap-2 px-4 py-3 text-sm text-[#C8C8D8] hover:bg-[#2A2A2A] transition-colors disabled:opacity-50 text-left"
                     >
-                      <Flag className="w-4 h-4 text-[#A0A0B8]" />
+                      <Flag className="w-4 h-4 text-[#999999]" />
                       <span>Report Post</span>
                     </button>
                   )}
@@ -127,13 +127,13 @@ const PostContent = ({ post, commentCount }: PostContentProps) => {
         </div>
 
         {/* Content */}
-        <p className="text-[#C8C8D8] text-base leading-relaxed mb-5 whitespace-pre-wrap">
+        <p className="text-[#C8C8D8] text-text-aliasase leading-relaxed mb-5 whitespace-pre-wrap">
           {post.content}
         </p>
 
         {/* Image */}
         {post.image && (
-          <div className="mb-5 rounded-xl overflow-hidden border border-[#2A2A3E]">
+          <div className="mb-5 rounded-xl overflow-hidden border border-[#2A2A2A]">
             <img
               src={post.image}
               alt="Post attachment"

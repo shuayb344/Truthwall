@@ -70,21 +70,21 @@ const CommentItem = ({ comment, replies = [] }: CommentItemProps) => {
     <div className="group">
       <div className="flex gap-3">
         {/* Avatar */}
-        <div className="w-8 h-8 rounded-full bg-[#7C6FF7]/15 border border-[#7C6FF7]/20 flex items-center justify-center text-[10px] font-bold text-[#7C6FF7] flex-shrink-0 mt-0.5">
+        <div className="w-8 h-8 rounded-full bg-[#E03030]/15 border border-[#E03030]/20 flex items-center justify-center text-[10px] font-heading text-[#E03030] flex-shrink-0 mt-0.5">
           {comment.authorAlias.slice(0, 2).toUpperCase()}
         </div>
 
         <div className="flex-1 min-w-0">
           {/* Header */}
           <div className="flex items-center gap-2 mb-1">
-            <span className="font-mono text-xs font-semibold text-[#9D8FFF]">
+            <span className="font-mono text-xs font-semibold text-[#FF6B6B]">
               @{comment.authorAlias}
             </span>
-            <span className="text-[10px] text-[#606078]">{timeAgo} ago</span>
+            <span className="text-[10px] text-[#555555]">{timeAgo} ago</span>
           </div>
 
           {/* Content */}
-          <div className="bg-[#1C1C28] border border-[#2A2A3E]/50 rounded-xl rounded-tl-sm px-4 py-3">
+          <div className="bg-[#1A1A1A] border border-[#2A2A2A]/50 rounded-xl rounded-tl-sm px-4 py-3">
             <p className="text-sm text-[#C8C8D8] leading-relaxed whitespace-pre-wrap">
               {comment.content}
             </p>
@@ -95,7 +95,7 @@ const CommentItem = ({ comment, replies = [] }: CommentItemProps) => {
             <button 
               onClick={handleLike}
               className={`inline-flex items-center gap-1 text-[10px] transition-colors ${
-                comment.isLiked ? "text-rose-400" : "text-[#606078] hover:text-rose-400"
+                comment.isLiked ? "text-rose-400" : "text-[#555555] hover:text-rose-400"
               }`}
             >
               <Heart className={`w-3 h-3 ${comment.isLiked ? "fill-current" : ""}`} />
@@ -103,7 +103,7 @@ const CommentItem = ({ comment, replies = [] }: CommentItemProps) => {
             </button>
             <button 
               onClick={() => setIsReplying(!isReplying)}
-              className="text-[10px] text-[#606078] hover:text-[#A0A0B8] transition-colors font-medium"
+              className="text-[10px] text-[#555555] hover:text-[#999999] transition-colors font-medium"
             >
               ↩ Reply
             </button>
@@ -123,7 +123,7 @@ const CommentItem = ({ comment, replies = [] }: CommentItemProps) => {
 
           {/* Nested Replies */}
           {replies.length > 0 && (
-            <div className="mt-4 space-y-4 border-l border-[#2A2A3E] pl-4">
+            <div className="mt-4 space-y-4 border-l border-[#2A2A2A] pl-4">
               {replies.map((reply) => (
                 <CommentItem key={reply._id} comment={reply} />
               ))}

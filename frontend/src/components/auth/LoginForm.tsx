@@ -48,32 +48,32 @@ const LoginForm = () => {
   return (
     <form onSubmit={handleSubmit(onLogin)} className="space-y-4">
       <div>
-        <label className="block text-sm text-[#A0A0B8] mb-1.5">Email address</label>
+        <label className="block text-sm text-[#999999] mb-1.5">Email address</label>
         <input
           {...register("email")}
           type="email"
           placeholder="you@example.com"
           autoComplete="off"
-          className="w-full px-4 py-3 rounded-xl bg-[#12121A] border border-[#2A2A3E] text-[#EEEEF5] placeholder-[#606078] focus:outline-none focus:border-[#7C6FF7] transition-colors text-sm"
+          className="w-full px-4 py-3 rounded-xl bg-[#111111] border border-[#2A2A2A] text-[#F5F5F5] placeholder-[#555555] focus:outline-none focus:border-[#E03030] transition-colors text-sm"
         />
         {errors.email && (
           <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>
         )}
       </div>
       <div>
-        <label className="block text-sm text-[#A0A0B8] mb-1.5">Password</label>
+        <label className="block text-sm text-[#999999] mb-1.5">Password</label>
         <div className="relative">
           <input
             {...register("password")}
             type={showPassword ? "text" : "password"}
             placeholder="••••••••"
             autoComplete="off"
-            className="w-full px-4 py-3 rounded-xl bg-[#12121A] border border-[#2A2A3E] text-[#EEEEF5] placeholder-[#606078] focus:outline-none focus:border-[#7C6FF7] transition-colors text-sm pr-10"
+            className="w-full px-4 py-3 rounded-xl bg-[#111111] border border-[#2A2A2A] text-[#F5F5F5] placeholder-[#555555] focus:outline-none focus:border-[#E03030] transition-colors text-sm pr-10"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#606078] hover:text-[#A0A0B8]"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#999999]"
           >
             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
@@ -85,7 +85,7 @@ const LoginForm = () => {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3 rounded-xl bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white font-medium text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+        className="w-full py-3 rounded-xl bg-[#E03030] hover:bg-[#C42020] text-white font-medium text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
       >
         {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
         Sign In

@@ -56,32 +56,32 @@ const RegisterForm = () => {
   return (
     <form onSubmit={handleSubmit(onRegister)} className="space-y-4">
       <div>
-        <label className="block text-sm text-[#A0A0B8] mb-1.5">Email address</label>
+        <label className="block text-sm text-[#999999] mb-1.5">Email address</label>
         <input
           {...register("email")}
           type="email"
           placeholder="you@example.com"
           autoComplete="off"
-          className="w-full px-4 py-3 rounded-xl bg-[#12121A] border border-[#2A2A3E] text-[#EEEEF5] placeholder-[#606078] focus:outline-none focus:border-[#7C6FF7] transition-colors text-sm"
+          className="w-full px-4 py-3 rounded-xl bg-[#111111] border border-[#2A2A2A] text-[#F5F5F5] placeholder-[#555555] focus:outline-none focus:border-[#E03030] transition-colors text-sm"
         />
         {errors.email && (
           <p className="text-xs text-red-400 mt-1">{errors.email.message}</p>
         )}
       </div>
       <div>
-        <label className="block text-sm text-[#A0A0B8] mb-1.5">Password</label>
+        <label className="block text-sm text-[#999999] mb-1.5">Password</label>
         <div className="relative">
           <input
             {...register("password")}
             type={showPassword ? "text" : "password"}
             placeholder="••••••••"
             autoComplete="off"
-            className="w-full px-4 py-3 rounded-xl bg-[#12121A] border border-[#2A2A3E] text-[#EEEEF5] placeholder-[#606078] focus:outline-none focus:border-[#7C6FF7] transition-colors text-sm pr-10"
+            className="w-full px-4 py-3 rounded-xl bg-[#111111] border border-[#2A2A2A] text-[#F5F5F5] placeholder-[#555555] focus:outline-none focus:border-[#E03030] transition-colors text-sm pr-10"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#606078] hover:text-[#A0A0B8]"
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-[#555555] hover:text-[#999999]"
           >
             {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
           </button>
@@ -93,25 +93,25 @@ const RegisterForm = () => {
 
       {/* Generated alias reveal */}
       {generatedAlias && (
-        <div className="px-4 py-3 rounded-xl bg-[#1C1C28] border border-[#7C6FF7]/30">
-          <p className="text-xs text-[#A0A0B8] mb-1">Your generated alias</p>
-          <p className="font-mono text-[#9D8FFF] font-medium">{generatedAlias}</p>
+        <div className="px-4 py-3 rounded-xl bg-[#1A1A1A] border border-[#E03030]/30">
+          <p className="text-xs text-[#999999] mb-1">Your generated alias</p>
+          <p className="font-mono text-[#FF6B6B] font-medium">{generatedAlias}</p>
         </div>
       )}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full py-3 rounded-xl bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white font-medium text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
+        className="w-full py-3 rounded-xl bg-[#E03030] hover:bg-[#C42020] text-white font-medium text-sm transition-all disabled:opacity-50 flex items-center justify-center gap-2"
       >
         {isSubmitting && <Loader2 className="w-4 h-4 animate-spin" />}
         Create Account
       </button>
-      <p className="text-xs text-center text-[#606078]">
+      <p className="text-xs text-center text-[#555555]">
         By joining, you agree to our{" "}
-        <span className="text-[#7C6FF7] cursor-pointer">Privacy Sanctuary</span>{" "}
+        <span className="text-[#E03030] cursor-pointer">Privacy Sanctuary</span>{" "}
         and{" "}
-        <span className="text-[#7C6FF7] cursor-pointer">Code of Silence</span>.
+        <span className="text-[#E03030] cursor-pointer">Code of Silence</span>.
       </p>
     </form>
   );

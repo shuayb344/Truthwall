@@ -53,10 +53,10 @@ const CommentInput = ({ postId, parentId, onCancel, onSuccess }: CommentInputPro
   };
 
   return (
-    <div className="bg-[#1C1C28] border border-[#2A2A3E] rounded-2xl p-4">
+    <div className="bg-[#1A1A1A] border border-[#2A2A2A] rounded-2xl p-4">
       <div className="flex gap-3">
         {/* Avatar */}
-        <div className="w-9 h-9 rounded-full bg-[#7C6FF7]/15 border border-[#7C6FF7]/20 flex items-center justify-center text-xs font-bold text-[#7C6FF7] flex-shrink-0">
+        <div className="w-9 h-9 rounded-full bg-[#E03030]/15 border border-[#E03030]/20 flex items-center justify-center text-xs font-heading text-[#E03030] flex-shrink-0">
           {isAuthenticated && user
             ? user.alias.slice(0, 2).toUpperCase()
             : "?"
@@ -72,18 +72,18 @@ const CommentInput = ({ postId, parentId, onCancel, onSuccess }: CommentInputPro
             placeholder="Respond with empathy..."
             rows={3}
             maxLength={2000}
-            className="w-full bg-transparent text-sm text-[#C8C8D8] placeholder:text-[#606078] resize-none focus:outline-none leading-relaxed"
+            className="w-full bg-transparent text-sm text-[#C8C8D8] placeholder:text-[#555555] resize-none focus:outline-none leading-relaxed"
           />
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#2A2A3E]/50">
+      <div className="flex items-center justify-between mt-3 pt-3 border-t border-[#2A2A2A]/50">
         <div className="flex items-center gap-2">
-          <button className="p-2 rounded-lg text-[#606078] hover:text-[#A0A0B8] hover:bg-[#2A2A3E]/50 transition-all">
+          <button className="p-2 rounded-lg text-[#555555] hover:text-[#999999] hover:bg-[#2A2A2A]/50 transition-all">
             <Image className="w-4 h-4" />
           </button>
-          <button className="p-2 rounded-lg text-[#606078] hover:text-[#A0A0B8] hover:bg-[#2A2A3E]/50 transition-all">
+          <button className="p-2 rounded-lg text-[#555555] hover:text-[#999999] hover:bg-[#2A2A2A]/50 transition-all">
             <Smile className="w-4 h-4" />
           </button>
         </div>
@@ -92,7 +92,7 @@ const CommentInput = ({ postId, parentId, onCancel, onSuccess }: CommentInputPro
           {onCancel && (
             <button
               onClick={onCancel}
-              className="text-xs text-[#606078] hover:text-[#A0A0B8] transition-all font-medium"
+              className="text-xs text-[#555555] hover:text-[#999999] transition-all font-medium"
             >
               Cancel
             </button>
@@ -100,7 +100,7 @@ const CommentInput = ({ postId, parentId, onCancel, onSuccess }: CommentInputPro
           <button
             onClick={handleSubmit}
             disabled={!content.trim() || mutation.isPending}
-            className="px-5 py-2 rounded-xl bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-[#7C6FF7]/20"
+            className="px-5 py-2 rounded-xl bg-[#E03030] hover:bg-[#C42020] text-white text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-[#E03030]/20"
           >
             {mutation.isPending ? "Posting..." : parentId ? "Reply" : "Reply"}
           </button>

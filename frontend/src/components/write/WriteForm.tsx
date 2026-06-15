@@ -46,19 +46,19 @@ const WriteForm = () => {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {/* Header */}
-      <div className="flex items-center gap-3 pb-4 border-b border-[#2A2A3E]/50">
-        <div className="w-10 h-10 rounded-xl bg-[#7C6FF7]/15 border border-[#7C6FF7]/20 flex items-center justify-center">
-          <PenLine className="w-5 h-5 text-[#7C6FF7]" />
+      <div className="flex items-center gap-3 pb-4 border-b border-[#2A2A2A]/50">
+        <div className="w-10 h-10 rounded-xl bg-[#E03030]/15 border border-[#E03030]/20 flex items-center justify-center">
+          <PenLine className="w-5 h-5 text-[#E03030]" />
         </div>
         <div>
-          <h1 className="text-lg font-bold text-[#EEEEF5]">New Confession</h1>
-          <p className="text-xs text-[#606078]">Share anonymously. Be heard.</p>
+          <h1 className="text-lg font-heading text-[#F5F5F5]">New Confession</h1>
+          <p className="text-xs text-[#555555]">Share anonymously. Be heard.</p>
         </div>
       </div>
 
       {/* Text editor */}
       <div>
-        <label className="block text-sm font-medium text-[#EEEEF5] mb-3">
+        <label className="block text-sm font-medium text-[#F5F5F5] mb-3">
           Your Confession
         </label>
         <div className="relative">
@@ -68,7 +68,7 @@ const WriteForm = () => {
             placeholder="What's on your mind? Share your truth..."
             maxLength={maxChars}
             rows={8}
-            className="w-full bg-[#12121A] border border-[#2A2A3E] rounded-xl px-5 py-4 text-sm text-[#C8C8D8] placeholder:text-[#606078] resize-none focus:outline-none focus:border-[#7C6FF7]/50 focus:ring-1 focus:ring-[#7C6FF7]/20 transition-all leading-relaxed"
+            className="w-full bg-[#111111] border border-[#2A2A2A] rounded-xl px-5 py-4 text-sm text-[#C8C8D8] placeholder:text-[#555555] resize-none focus:outline-none focus:border-[#E03030]/50 focus:ring-1 focus:ring-[#E03030]/20 transition-all leading-relaxed"
           />
           <div className="absolute bottom-3 right-4 flex items-center gap-1.5">
             <span
@@ -77,7 +77,7 @@ const WriteForm = () => {
                   ? charCount >= maxChars
                     ? "text-red-400"
                     : "text-amber-400"
-                  : "text-[#606078]"
+                  : "text-[#555555]"
               }`}
             >
               {charCount.toLocaleString()}/{maxChars.toLocaleString()}
@@ -94,17 +94,17 @@ const WriteForm = () => {
 
       {/* Expiry toggle */}
       <div>
-        <label className="block text-sm font-medium text-[#EEEEF5] mb-3">
+        <label className="block text-sm font-medium text-[#F5F5F5] mb-3">
           Post Duration
         </label>
-        <div className="inline-flex rounded-xl bg-[#12121A] border border-[#2A2A3E] p-1">
+        <div className="inline-flex rounded-xl bg-[#111111] border border-[#2A2A2A] p-1">
           <button
             type="button"
             onClick={() => setIsPermanent(false)}
             className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
               !isPermanent
-                ? "bg-[#7C6FF7] text-white shadow-lg shadow-[#7C6FF7]/20"
-                : "text-[#A0A0B8] hover:text-[#EEEEF5]"
+                ? "bg-[#E03030] text-white shadow-lg shadow-[#E03030]/20"
+                : "text-[#999999] hover:text-[#F5F5F5]"
             }`}
           >
             Expires in 7 days
@@ -114,14 +114,14 @@ const WriteForm = () => {
             onClick={() => setIsPermanent(true)}
             className={`px-4 py-2 text-sm font-medium rounded-lg transition-all ${
               isPermanent
-                ? "bg-[#7C6FF7] text-white shadow-lg shadow-[#7C6FF7]/20"
-                : "text-[#A0A0B8] hover:text-[#EEEEF5]"
+                ? "bg-[#E03030] text-white shadow-lg shadow-[#E03030]/20"
+                : "text-[#999999] hover:text-[#F5F5F5]"
             }`}
           >
             Permanent
           </button>
         </div>
-        <p className="text-xs text-[#606078] mt-2">
+        <p className="text-xs text-[#555555] mt-2">
           {isPermanent
             ? "This post will stay on the wall forever"
             : "This post will automatically disappear after 7 days"}
@@ -129,11 +129,11 @@ const WriteForm = () => {
       </div>
 
       {/* Submit */}
-      <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-[#2A2A3E]/50">
+      <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-[#2A2A2A]/50">
         <button
           type="submit"
           disabled={!isValid || createPostMutation.isPending}
-          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#7C6FF7]/20 hover:shadow-xl hover:shadow-[#7C6FF7]/30"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#E03030] hover:bg-[#C42020] text-white text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#E03030]/20 hover:shadow-xl hover:shadow-[#E03030]/30"
         >
           {createPostMutation.isPending ? (
             <>
@@ -151,7 +151,7 @@ const WriteForm = () => {
         <button
           type="button"
           onClick={() => navigate("/feed")}
-          className="w-full sm:w-auto px-6 py-3 rounded-full border border-[#2A2A3E] text-sm font-medium text-[#A0A0B8] hover:text-[#EEEEF5] hover:border-[#3A3A4E] transition-all"
+          className="w-full sm:w-auto px-6 py-3 rounded-full border border-[#2A2A2A] text-sm font-medium text-[#999999] hover:text-[#F5F5F5] hover:border-[#3A3A4E] transition-all"
         >
           Cancel
         </button>

@@ -32,7 +32,7 @@ const PostCard = ({ post }: PostCardProps) => {
   return (
     <article
       onClick={() => navigate(`/post/${post._id}`)}
-      className="rounded-2xl border border-[#2A2A3E] bg-[#12121A] overflow-hidden transition-all hover:border-[#3A3A4E] cursor-pointer"
+      className="confessional-card group rounded-2xl overflow-hidden cursor-pointer"
     >
       {/* Crisis support banner */}
       {post.crisis?.flagged && <CrisisBanner />}
@@ -41,11 +41,11 @@ const PostCard = ({ post }: PostCardProps) => {
         {/* Header: alias + time + category */}
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <span className="font-mono text-sm font-semibold text-[#9D8FFF]">
+            <span className="font-mono text-sm font-semibold text-text-alias">
               {post.authorAlias}
             </span>
-            <span className="text-[#606078] text-xs">•</span>
-            <span className="text-xs text-[#606078]">{timeAgo} ago</span>
+            <span className="text-[#555555] text-xs">•</span>
+            <span className="text-xs text-[#555555]">{timeAgo} ago</span>
           </div>
           <div className="flex items-center gap-2">
             {canDelete && (
@@ -71,7 +71,7 @@ const PostCard = ({ post }: PostCardProps) => {
 
         {/* Image */}
         {post.image && (
-          <div className="mb-4 rounded-xl overflow-hidden border border-[#2A2A3E]">
+          <div className="mb-4 rounded-xl overflow-hidden border border-[#2A2A2A]">
             <img
               src={post.image}
               alt="Post attachment"

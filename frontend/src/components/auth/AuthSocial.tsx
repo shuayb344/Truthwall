@@ -11,7 +11,7 @@ const AuthSocial = ({ onGoogleSignIn, isLoading }: AuthSocialProps) => {
       <button
         onClick={onGoogleSignIn}
         disabled={isLoading}
-        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-[#2A2A3E] bg-[#12121A] hover:border-[#7C6FF7] text-[#EEEEF5] text-sm font-medium transition-all disabled:opacity-50 mb-4"
+        className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-[#2A2A2A] bg-[#111111] hover:border-[#E03030] text-[#F5F5F5] text-sm font-medium transition-all disabled:opacity-50 mb-4"
       >
         {isLoading ? (
           <Loader2 className="w-4 h-4 animate-spin" />
@@ -27,9 +27,9 @@ const AuthSocial = ({ onGoogleSignIn, isLoading }: AuthSocialProps) => {
       </button>
 
       <div className="flex items-center gap-3 mb-4">
-        <div className="flex-1 h-px bg-[#2A2A3E]" />
-        <span className="text-xs text-[#606078]">or</span>
-        <div className="flex-1 h-px bg-[#2A2A3E]" />
+        <div className="flex-1 h-px bg-[#2A2A2A]" />
+        <span className="text-xs text-[#555555]">or</span>
+        <div className="flex-1 h-px bg-[#2A2A2A]" />
       </div>
     </>
   );

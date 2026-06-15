@@ -49,10 +49,10 @@ const FeedPage = () => {
   return (
     <>
       {/* Feed header */}
-      <div className="sticky top-14 lg:top-0 z-30 bg-[#0A0A0F]/80 backdrop-blur-md border-b border-[#2A2A3E]/50">
+      <div className="sticky top-14 lg:top-0 z-30 bg-[#080808]/80 backdrop-blur-md border-b border-[#2A2A2A]/50">
         <div className="px-5 pt-5 pb-4">
           <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-bold text-[#EEEEF5]">Home Feed</h1>
+            <h1 className="text-xl font-heading text-[#F5F5F5]">Home Feed</h1>
             <FeedSortToggle activeSort={sort} onSortChange={setSort} />
           </div>
           <FeedCategoryTabs
@@ -73,10 +73,10 @@ const FeedPage = () => {
         )}
         {isError && !isLoading && (
           <div className="flex flex-col items-center py-16 text-center">
-            <p className="text-[#A0A0B8] mb-2">Something went wrong loading the feed.</p>
+            <p className="text-[#999999] mb-2">Something went wrong loading the feed.</p>
             <button
               onClick={() => window.location.reload()}
-              className="text-sm text-[#7C6FF7] hover:text-[#6B5FE6] font-medium"
+              className="text-sm text-[#E03030] hover:text-[#C42020] font-medium"
             >
               Try again
             </button>
@@ -96,14 +96,14 @@ const FeedPage = () => {
 
         {isFetchingNextPage && (
           <div className="flex items-center justify-center py-6">
-            <Loader2 className="w-5 h-5 text-[#7C6FF7] animate-spin" />
-            <span className="ml-2 text-sm text-[#606078]">Loading more...</span>
+            <Loader2 className="w-5 h-5 text-[#E03030] animate-spin" />
+            <span className="ml-2 text-sm text-[#555555]">Loading more...</span>
           </div>
         )}
 
         {!hasNextPage && posts.length > 0 && !isLoading && (
           <div className="text-center py-8">
-            <p className="text-xs text-[#606078]">
+            <p className="text-xs text-[#555555]">
               You've reached the end of the wall
             </p>
           </div>

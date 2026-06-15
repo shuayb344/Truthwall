@@ -17,7 +17,7 @@ const typeConfig = {
   },
   comment: {
     icon: MessageSquare,
-    color: "text-blue-400",
+    color: "text-text-aliaslue-400",
     bg: "bg-blue-400/10",
     borderColor: "border-blue-400/20",
   },
@@ -39,8 +39,8 @@ const NotificationItem = ({ notification, onMarkRead }: NotificationItemProps) =
   return (
     <button
       onClick={handleClick}
-      className={`w-full flex items-start gap-3.5 px-5 py-4 text-left transition-all hover:bg-[#1C1C28]/50 border-b border-[#2A2A3E]/30 ${
-        !notification.read ? "bg-[#7C6FF7]/[0.03]" : ""
+      className={`w-full flex items-start gap-3.5 px-5 py-4 text-left transition-all hover:bg-[#1A1A1A]/50 border-b border-[#2A2A2A]/30 ${
+        !notification.read ? "bg-[#E03030]/[0.03]" : ""
       }`}
     >
       {/* Type icon */}
@@ -54,17 +54,17 @@ const NotificationItem = ({ notification, onMarkRead }: NotificationItemProps) =
       <div className="flex-1 min-w-0">
         <p
           className={`text-sm leading-relaxed ${
-            notification.read ? "text-[#A0A0B8]" : "text-[#EEEEF5]"
+            notification.read ? "text-[#999999]" : "text-[#F5F5F5]"
           }`}
         >
           {notification.message}
         </p>
-        <p className="text-xs text-[#606078] mt-1">{timeAgo}</p>
+        <p className="text-xs text-[#555555] mt-1">{timeAgo}</p>
       </div>
 
       {/* Unread dot */}
       {!notification.read && (
-        <div className="w-2.5 h-2.5 rounded-full bg-[#7C6FF7] flex-shrink-0 mt-2 shadow-lg shadow-[#7C6FF7]/40" />
+        <div className="w-2.5 h-2.5 rounded-full bg-[#E03030] flex-shrink-0 mt-2 shadow-lg shadow-[#E03030]/40" />
       )}
     </button>
   );

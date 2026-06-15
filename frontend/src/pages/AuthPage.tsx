@@ -36,7 +36,7 @@ const AuthPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#0A0A0F] flex">
+    <div className="min-h-screen bg-[#080808] flex">
       <AuthLeftPanel />
 
       {/* Right panel — auth form */}
@@ -45,22 +45,22 @@ const AuthPage = () => {
           {/* Logo */}
           <div className="text-center mb-8">
             <img src={logo} alt="Logo" className="w-12 h-12 mx-auto mb-3" />
-            <span className="text-2xl font-bold">
-              Truth<span className="text-[#7C6FF7]">Wall</span>
+            <span className="text-2xl font-heading">
+              Truth<span className="text-[#E03030]">Wall</span>
             </span>
-            <p className="text-[#A0A0B8] text-sm mt-1">Welcome back</p>
+            <p className="text-[#999999] text-sm mt-1">Welcome back</p>
           </div>
 
           {/* Tab toggle */}
-          <div className="flex rounded-xl bg-[#12121A] border border-[#2A2A3E] p-1 mb-6">
+          <div className="flex rounded-xl bg-[#111111] border border-[#2A2A2A] p-1 mb-6">
             {(["login", "register"] as const).map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
                 className={`flex-1 py-2 text-sm font-medium rounded-lg transition-all ${
                   tab === t
-                    ? "bg-[#7C6FF7] text-white"
-                    : "text-[#A0A0B8] hover:text-[#EEEEF5]"
+                    ? "bg-[#E03030] text-white"
+                    : "text-[#999999] hover:text-[#F5F5F5]"
                 }`}
               >
                 {t === "login" ? "Sign In" : "Sign Up"}

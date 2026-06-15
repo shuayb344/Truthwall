@@ -35,19 +35,19 @@ export default function ProfilePage() {
       {isStatsLoading && (
         <div className="animate-pulse">
           <div className="flex flex-col items-center sm:items-start sm:flex-row gap-5 mb-6">
-            <div className="w-24 h-24 rounded-full bg-[#1C1C28]" />
+            <div className="w-24 h-24 rounded-full bg-[#1A1A1A]" />
             <div className="flex flex-col items-center sm:items-start gap-3 mt-1">
-              <div className="h-7 w-48 bg-[#1C1C28] rounded-lg" />
-              <div className="h-7 w-56 bg-[#1C1C28] rounded-full" />
+              <div className="h-7 w-48 bg-[#1A1A1A] rounded-lg" />
+              <div className="h-7 w-56 bg-[#1A1A1A] rounded-full" />
             </div>
           </div>
           <div className="flex items-center gap-5 mb-6">
             {[1, 2, 3].map((i) => (
               <div key={i} className="flex items-center gap-5">
-                {i > 1 && <div className="w-px h-8 bg-[#2A2A3E]" />}
+                {i > 1 && <div className="w-px h-8 bg-[#2A2A2A]" />}
                 <div className="text-center">
-                  <div className="h-5 w-10 bg-[#1C1C28] rounded mx-auto mb-1" />
-                  <div className="h-3 w-16 bg-[#1C1C28] rounded mx-auto" />
+                  <div className="h-5 w-10 bg-[#1A1A1A] rounded mx-auto mb-1" />
+                  <div className="h-3 w-16 bg-[#1A1A1A] rounded mx-auto" />
                 </div>
               </div>
             ))}

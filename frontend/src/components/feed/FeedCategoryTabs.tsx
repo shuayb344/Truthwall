@@ -26,8 +26,8 @@ const FeedCategoryTabs = ({
           onClick={() => onCategoryChange(cat.value)}
           className={`px-4 py-1.5 rounded-full text-sm font-medium whitespace-nowrap transition-all border ${
             activeCategory === cat.value
-              ? "bg-[#7C6FF7] text-white border-[#7C6FF7]"
-              : "bg-transparent text-[#A0A0B8] border-[#2A2A3E] hover:border-[#7C6FF7]/50 hover:text-[#EEEEF5]"
+              ? "bg-[#E03030] text-white border-[#E03030]"
+              : "bg-transparent text-[#999999] border-[#2A2A2A] hover:border-[#E03030]/50 hover:text-[#F5F5F5]"
           }`}
         >
           {cat.label}

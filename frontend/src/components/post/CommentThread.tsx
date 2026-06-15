@@ -35,13 +35,13 @@ const CommentThread = ({ postId, commentCount }: CommentThreadProps) => {
       {/* Section header */}
       <div className="flex items-center gap-3 mb-5">
         <div className="flex items-center gap-2">
-          <MessageSquare className="w-4 h-4 text-[#7C6FF7]" />
-          <h2 className="text-base font-bold text-[#EEEEF5]">
+          <MessageSquare className="w-4 h-4 text-[#E03030]" />
+          <h2 className="text-text-aliasase font-heading text-[#F5F5F5]">
             Responses
           </h2>
-          <span className="text-sm text-[#606078]">({commentCount})</span>
+          <span className="text-sm text-[#555555]">({commentCount})</span>
         </div>
-        <div className="flex-1 h-px bg-[#2A2A3E]/50" />
+        <div className="flex-1 h-px bg-[#2A2A2A]/50" />
       </div>
 
       {/* Comment input */}
@@ -61,8 +61,8 @@ const CommentThread = ({ postId, commentCount }: CommentThreadProps) => {
       ) : comments.length === 0 ? (
 
         <div className="text-center py-10">
-          <MessageSquare className="w-8 h-8 text-[#2A2A3E] mx-auto mb-3" />
-          <p className="text-sm text-[#606078]">No responses yet</p>
+          <MessageSquare className="w-8 h-8 text-[#2A2A2A] mx-auto mb-3" />
+          <p className="text-sm text-[#555555]">No responses yet</p>
           <p className="text-xs text-[#505068] mt-1">Be the first to respond with empathy</p>
         </div>
       ) : (
@@ -84,7 +84,7 @@ const CommentThread = ({ postId, commentCount }: CommentThreadProps) => {
           <button
             onClick={() => fetchNextPage()}
             disabled={isFetchingNextPage}
-            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1C1C28] border border-[#2A2A3E] text-sm font-medium text-[#A0A0B8] hover:text-[#EEEEF5] hover:border-[#3A3A4E] transition-all disabled:opacity-50"
+            className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-[#1A1A1A] border border-[#2A2A2A] text-sm font-medium text-[#999999] hover:text-[#F5F5F5] hover:border-[#3A3A4E] transition-all disabled:opacity-50"
           >
             {isFetchingNextPage ? (
               <>

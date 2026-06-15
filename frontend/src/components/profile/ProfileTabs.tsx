@@ -10,7 +10,7 @@ const tabs = [
 
 const ProfileTabs = ({ activeTab, onTabChange }: ProfileTabsProps) => {
   return (
-    <div className="flex items-center gap-0 border-b border-[#2A2A3E]/50 mb-5">
+    <div className="flex items-center gap-0 border-b border-[#2A2A2A]/50 mb-5">
       {tabs.map((tab) => {
         const isActive = activeTab === tab.key;
         return (
@@ -19,13 +19,13 @@ const ProfileTabs = ({ activeTab, onTabChange }: ProfileTabsProps) => {
             onClick={() => onTabChange(tab.key)}
             className={`relative px-5 py-3 text-sm font-medium transition-all ${
               isActive
-                ? "text-[#EEEEF5]"
-                : "text-[#606078] hover:text-[#A0A0B8]"
+                ? "text-[#F5F5F5]"
+                : "text-[#555555] hover:text-[#999999]"
             }`}
           >
             {tab.label}
             {isActive && (
-              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#7C6FF7] rounded-full" />
+              <span className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#E03030] rounded-full" />
             )}
           </button>
         );

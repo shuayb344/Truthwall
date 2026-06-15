@@ -33,7 +33,7 @@ const PostReactions = ({
   const iconSizeClass = iconSize === 4 ? "w-4 h-4" : "w-3.5 h-3.5";
 
   return (
-    <div className={`flex items-center gap-2 flex-wrap ${variant === "content" ? "pt-4 border-t border-[#2A2A3E]/50" : ""}`}>
+    <div className={`flex items-center gap-2 flex-wrap ${variant === "content" ? "pt-4 border-t border-[#2A2A2A]/50" : ""}`}>
       {reactionConfig.map(({ type, icon: Icon, label, activeColor }) => {
         const count = post.reactionCounts?.[type] || 0;
         const hasCount = count > 0;
@@ -44,13 +44,13 @@ const PostReactions = ({
             onClick={(e) => handleReaction(type, e)}
             disabled={isReactionPending}
             className={`inline-flex items-center gap-1.5 ${btnPadding} rounded-full border text-xs font-medium transition-all group ${hasCount
-              ? `border-[#2A2A3E] bg-[#1C1C28] hover:border-[#3A3A4E] ${activeColor}`
-              : "border-[#2A2A3E] bg-transparent text-[#606078] hover:border-[#3A3A4E] hover:text-[#A0A0B8] hover:bg-[#1C1C28]"
+              ? `border-[#2A2A2A] bg-[#1A1A1A] hover:border-[#3A3A4E] ${activeColor}`
+              : "border-[#2A2A2A] bg-transparent text-[#555555] hover:border-[#3A3A4E] hover:text-[#999999] hover:bg-[#1A1A1A]"
               }`}
           >
             <Icon className={iconSizeClass} />
             <span>{label}</span>
-            <span className={`ml-0.5 ${hasCount ? "text-[#A0A0B8]" : "text-[#505068]"}`}>
+            <span className={`ml-0.5 ${hasCount ? "text-[#999999]" : "text-[#505068]"}`}>
               {formatCount(count)}
             </span>
           </button>
@@ -62,13 +62,13 @@ const PostReactions = ({
         onCommentClick ? (
           <button
             onClick={onCommentClick}
-            className={`inline-flex items-center gap-1.5 ${btnPadding} rounded-full border border-[#2A2A3E] text-xs font-medium text-[#606078] hover:border-[#3A3A4E] hover:text-[#A0A0B8] hover:bg-[#1C1C28] transition-all ml-auto`}
+            className={`inline-flex items-center gap-1.5 ${btnPadding} rounded-full border border-[#2A2A2A] text-xs font-medium text-[#555555] hover:border-[#3A3A4E] hover:text-[#999999] hover:bg-[#1A1A1A] transition-all ml-auto`}
           >
             <MessageSquare className={iconSizeClass} />
             <span>{commentCount}</span>
           </button>
         ) : (
-          <div className={`inline-flex items-center gap-1.5 ${btnPadding} rounded-full border border-[#2A2A3E] text-xs font-medium text-[#606078] ml-auto`}>
+          <div className={`inline-flex items-center gap-1.5 ${btnPadding} rounded-full border border-[#2A2A2A] text-xs font-medium text-[#555555] ml-auto`}>
             <MessageSquare className={iconSizeClass} />
             <span>{commentCount}</span>
           </div>
@@ -80,8 +80,8 @@ const PostReactions = ({
         onClick={handleBookmark}
         disabled={isBookmarkPending}
         className={`inline-flex items-center justify-center p-2 rounded-full border transition-all disabled:opacity-50 ${isBookmarked
-          ? "border-amber-400/50 bg-amber-400/10 text-amber-400"
-          : "border-[#2A2A3E] text-[#606078] hover:border-[#3A3A4E] hover:text-[#7C6FF7] hover:bg-[#1C1C28]"
+          ? "border-border-defaultmber-400/50 bg-primarylevatedmber-400/10 text-amber-400"
+          : "border-[#2A2A2A] text-[#555555] hover:border-[#3A3A4E] hover:text-[#E03030] hover:bg-[#1A1A1A]"
           } ${!showCommentCount ? "ml-auto" : ""}`}
         title={isBookmarked ? "Remove bookmark" : "Bookmark post"}
       >

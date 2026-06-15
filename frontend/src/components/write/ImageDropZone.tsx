@@ -79,10 +79,10 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
   if (imageUrl) {
     return (
       <div>
-        <label className="block text-sm font-medium text-[#EEEEF5] mb-3">
+        <label className="block text-sm font-medium text-[#F5F5F5] mb-3">
           Image
         </label>
-        <div className="relative rounded-xl overflow-hidden border border-[#2A2A3E] group">
+        <div className="relative rounded-xl overflow-hidden border border-[#2A2A2A] group">
           <img
             src={imageUrl}
             alt="Upload preview"
@@ -104,38 +104,38 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
 
   return (
     <div>
-      <label className="block text-sm font-medium text-[#EEEEF5] mb-3">
-        Image <span className="text-[#606078] font-normal">(optional)</span>
+      <label className="block text-sm font-medium text-[#F5F5F5] mb-3">
+        Image <span className="text-[#555555] font-normal">(optional)</span>
       </label>
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`relative flex flex-col items-center justify-center py-10 px-6 rounded-xl border-2 border-dashed cursor-pointer transition-all ${isDragOver
-            ? "border-[#7C6FF7] bg-[#7C6FF7]/5"
-            : "border-[#2A2A3E] hover:border-[#3A3A4E] bg-[#12121A]/50"
+        className={`relative flex flex-col items-center justify-center py-10 px-6 rounded-xl border-border-default border-dashed cursor-pointer transition-all ${isDragOver
+            ? "border-[#E03030] bg-[#E03030]/5"
+            : "border-[#2A2A2A] hover:border-[#3A3A4E] bg-[#111111]/50"
           } ${uploadMutation.isPending ? "pointer-events-none opacity-60" : ""}`}
       >
         {uploadMutation.isPending ? (
           <>
-            <Loader2 className="w-8 h-8 text-[#7C6FF7] animate-spin mb-3" />
-            <p className="text-sm text-[#A0A0B8]">Uploading...</p>
+            <Loader2 className="w-8 h-8 text-[#E03030] animate-spin mb-3" />
+            <p className="text-sm text-[#999999]">Uploading...</p>
           </>
         ) : (
           <>
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${isDragOver ? "bg-[#7C6FF7]/20" : "bg-[#1C1C28]"
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${isDragOver ? "bg-[#E03030]/20" : "bg-[#1A1A1A]"
               }`}>
               {isDragOver ? (
-                <Upload className="w-6 h-6 text-[#7C6FF7]" />
+                <Upload className="w-6 h-6 text-[#E03030]" />
               ) : (
-                <ImageIcon className="w-6 h-6 text-[#606078]" />
+                <ImageIcon className="w-6 h-6 text-[#555555]" />
               )}
             </div>
-            <p className="text-sm text-[#A0A0B8] mb-1">
+            <p className="text-sm text-[#999999] mb-1">
               {isDragOver ? "Drop your image here" : "Drag & drop an image, or click to browse"}
             </p>
-            <p className="text-xs text-[#606078]">
+            <p className="text-xs text-[#555555]">
               JPEG, PNG, or WebP • Max 5MB
             </p>
           </>

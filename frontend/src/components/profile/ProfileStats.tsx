@@ -16,13 +16,13 @@ const ProfileStatsBar = ({ stats }: ProfileStatsProps) => {
       {statItems.map((item, i) => (
         <div key={item.key} className="flex items-center">
           {i > 0 && (
-            <div className="w-px h-8 bg-[#2A2A3E] mx-5" />
+            <div className="w-px h-8 bg-[#2A2A2A] mx-5" />
           )}
           <div className="text-center">
-            <p className="text-lg font-bold text-[#EEEEF5]">
+            <p className="text-lg font-heading text-[#F5F5F5]">
               {stats[item.key].toLocaleString()}
             </p>
-            <p className="text-xs text-[#606078] mt-0.5">{item.label}</p>
+            <p className="text-xs text-[#555555] mt-0.5">{item.label}</p>
           </div>
         </div>
       ))}

@@ -55,13 +55,13 @@ const ProfilePostList = ({
     const Icon = tab === "posts" ? FileText : Bookmark;
     return (
       <div className="flex flex-col items-center py-16 text-center">
-        <div className="w-16 h-16 rounded-2xl bg-[#12121A] border border-[#2A2A3E] flex items-center justify-center mb-4">
-          <Icon className="w-7 h-7 text-[#606078]" />
+        <div className="w-16 h-16 rounded-2xl bg-[#111111] border border-[#2A2A2A] flex items-center justify-center mb-4">
+          <Icon className="w-7 h-7 text-[#555555]" />
         </div>
-        <p className="text-[#A0A0B8] mb-1 text-sm font-medium">
+        <p className="text-[#999999] mb-1 text-sm font-medium">
           {tab === "posts" ? "No truths shared yet" : "No bookmarks yet"}
         </p>
-        <p className="text-xs text-[#606078]">
+        <p className="text-xs text-[#555555]">
           {tab === "posts"
             ? "Your confessions will appear here"
             : "Posts you bookmark will appear here"}
@@ -80,14 +80,14 @@ const ProfilePostList = ({
 
       {isFetchingNextPage && (
         <div className="flex items-center justify-center py-6">
-          <Loader2 className="w-5 h-5 text-[#7C6FF7] animate-spin" />
-          <span className="ml-2 text-sm text-[#606078]">Loading more...</span>
+          <Loader2 className="w-5 h-5 text-[#E03030] animate-spin" />
+          <span className="ml-2 text-sm text-[#555555]">Loading more...</span>
         </div>
       )}
 
       {!hasNextPage && posts.length > 0 && !isLoading && (
         <div className="text-center py-8">
-          <p className="text-xs text-[#606078]">End of Truths</p>
+          <p className="text-xs text-[#555555]">End of Truths</p>
         </div>
       )}
     </div>

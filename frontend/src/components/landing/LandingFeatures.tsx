@@ -20,15 +20,15 @@ const features = [
 
 const LandingFeatures = () => {
   return (
-    <section className="py-24 px-6 border-t border-[#2A2A3E]">
+    <section className="py-24 px-6 border-t border-[#2A2A2A]">
       <div className="max-w-6xl mx-auto grid md:grid-cols-3 gap-8">
         {features.map(({ icon: Icon, title, desc }) => (
           <div key={title} className="flex flex-col gap-3">
-            <div className="w-10 h-10 rounded-lg bg-[#1C1C28] border border-[#2A2A3E] flex items-center justify-center">
-              <Icon className="w-5 h-5 text-[#7C6FF7]" />
+            <div className="w-10 h-10 rounded-lg bg-[#1A1A1A] border border-[#2A2A2A] flex items-center justify-center">
+              <Icon className="w-5 h-5 text-[#E03030]" />
             </div>
-            <h3 className="font-semibold text-[#EEEEF5]">{title}</h3>
-            <p className="text-sm text-[#A0A0B8] leading-relaxed">{desc}</p>
+            <h3 className="font-semibold text-[#F5F5F5]">{title}</h3>
+            <p className="text-sm text-[#999999] leading-relaxed">{desc}</p>
           </div>
         ))}
       </div>

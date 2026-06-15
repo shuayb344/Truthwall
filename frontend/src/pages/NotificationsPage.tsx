@@ -33,10 +33,10 @@ export default function NotificationsPage() {
         {/* Error state */}
         {isError && !isLoading && (
           <div className="flex flex-col items-center py-16 text-center">
-            <p className="text-[#A0A0B8] mb-2">Something went wrong loading notifications.</p>
+            <p className="text-[#999999] mb-2">Something went wrong loading notifications.</p>
             <button
               onClick={() => window.location.reload()}
-              className="text-sm text-[#7C6FF7] hover:text-[#6B5FE6] font-medium"
+              className="text-sm text-[#E03030] hover:text-[#C42020] font-medium"
             >
               Try again
             </button>
