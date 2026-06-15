@@ -6,6 +6,7 @@ import {
   Bell,
   User,
   Shield,
+  LogOut,
 } from "lucide-react";
 import { useNotifications } from "@/hooks/useNotifications";
 
@@ -18,7 +19,7 @@ const navItems = [
 
 const FeedSidebar = () => {
   const navigate = useNavigate();
-  const { isAuthenticated, user } = useAuthStore();
+  const { isAuthenticated, user, logout } = useAuthStore();
   const { data: notificationData } = useNotifications();
   const unreadCount = notificationData?.unreadCount ?? 0;
 
@@ -89,6 +90,16 @@ const FeedSidebar = () => {
             <p className="text-xs font-medium text-[#EEEEF5] truncate">{user.alias}</p>
             <p className="text-[10px] text-[#606078]">♡ Empathy: {user.empathyScore.toLocaleString()}</p>
           </div>
+          <button 
+            onClick={() => {
+              logout();
+              navigate("/auth");
+            }}
+            className="ml-auto p-1.5 rounded-lg text-[#606078] hover:text-rose-400 hover:bg-rose-500/10 transition-all"
+            title="Log Out"
+          >
+            <LogOut size={16} />
+          </button>
         </div>
       ) : (
         <div className="mx-3 flex flex-col gap-2">

@@ -129,11 +129,11 @@ const WriteForm = () => {
       </div>
 
       {/* Submit */}
-      <div className="flex items-center gap-4 pt-4 border-t border-[#2A2A3E]/50">
+      <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 border-t border-[#2A2A3E]/50">
         <button
           type="submit"
           disabled={!isValid || createPostMutation.isPending}
-          className="inline-flex items-center gap-2 px-8 py-3 rounded-full bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#7C6FF7]/20 hover:shadow-xl hover:shadow-[#7C6FF7]/30"
+          className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 rounded-full bg-[#7C6FF7] hover:bg-[#6B5FE6] text-white text-sm font-semibold transition-all disabled:opacity-40 disabled:cursor-not-allowed hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-[#7C6FF7]/20 hover:shadow-xl hover:shadow-[#7C6FF7]/30"
         >
           {createPostMutation.isPending ? (
             <>
@@ -151,7 +151,7 @@ const WriteForm = () => {
         <button
           type="button"
           onClick={() => navigate("/feed")}
-          className="px-6 py-3 rounded-full border border-[#2A2A3E] text-sm font-medium text-[#A0A0B8] hover:text-[#EEEEF5] hover:border-[#3A3A4E] transition-all"
+          className="w-full sm:w-auto px-6 py-3 rounded-full border border-[#2A2A3E] text-sm font-medium text-[#A0A0B8] hover:text-[#EEEEF5] hover:border-[#3A3A4E] transition-all"
         >
           Cancel
         </button>
