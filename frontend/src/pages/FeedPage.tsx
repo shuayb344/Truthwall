@@ -49,7 +49,7 @@ const FeedPage = () => {
   return (
     <>
       {/* Feed header */}
-      <div className="sticky top-14 lg:top-0 z-30 bg-[#080808]/80 backdrop-blur-md border-b border-[#2A2A2A]/50">
+      <div className="sticky top-14 lg:top-0 z-30 bg-[#080808]/80 backdrop-blur-md border-b border-[#2A2A2A]/50 ">
         <div className="px-5 pt-5 pb-4">
           <div className="flex items-center justify-between mb-4">
             <h1 className="text-xl font-heading text-[#F5F5F5]">Home Feed</h1>

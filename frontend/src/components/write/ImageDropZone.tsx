@@ -79,10 +79,10 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
   if (imageUrl) {
     return (
       <div>
-        <label className="block text-sm font-medium text-[#F5F5F5] mb-3">
+        <label className="block text-sm font-medium text-text-primary mb-3">
           Image
         </label>
-        <div className="relative rounded-xl overflow-hidden border border-[#2A2A2A] group">
+        <div className="relative rounded-xl overflow-hidden border border-border-default group">
           <img
             src={imageUrl}
             alt="Upload preview"
@@ -92,7 +92,7 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
             <button
               type="button"
               onClick={handleRemove}
-              className="p-3 rounded-full bg-red-500/80 hover:bg-red-500 text-white transition-all"
+              className="p-3 rounded-full bg-primary/80 hover:bg-primary text-white transition-all"
             >
               <X className="w-5 h-5" />
             </button>
@@ -104,38 +104,38 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
 
   return (
     <div>
-      <label className="block text-sm font-medium text-[#F5F5F5] mb-3">
-        Image <span className="text-[#555555] font-normal">(optional)</span>
+      <label className="block text-sm font-medium text-text-primary mb-3">
+        Image <span className="text-text-muted font-normal">(optional)</span>
       </label>
       <div
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`relative flex flex-col items-center justify-center py-10 px-6 rounded-xl border-border-default border-dashed cursor-pointer transition-all ${isDragOver
-            ? "border-[#E03030] bg-[#E03030]/5"
-            : "border-[#2A2A2A] hover:border-[#3A3A4E] bg-[#111111]/50"
+        className={`relative flex flex-col items-center justify-center py-10 px-6 rounded-xl border-2 border-dashed cursor-pointer transition-all ${isDragOver
+            ? "border-primary bg-primary/5"
+            : "border-border-default hover:border-primary/50 bg-surface/50"
           } ${uploadMutation.isPending ? "pointer-events-none opacity-60" : ""}`}
       >
         {uploadMutation.isPending ? (
           <>
-            <Loader2 className="w-8 h-8 text-[#E03030] animate-spin mb-3" />
-            <p className="text-sm text-[#999999]">Uploading...</p>
+            <Loader2 className="w-8 h-8 text-primary animate-spin mb-3" />
+            <p className="text-sm text-text-secondary">Uploading...</p>
           </>
         ) : (
           <>
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${isDragOver ? "bg-[#E03030]/20" : "bg-[#1A1A1A]"
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${isDragOver ? "bg-primary/20" : "bg-elevated"
               }`}>
               {isDragOver ? (
-                <Upload className="w-6 h-6 text-[#E03030]" />
+                <Upload className="w-6 h-6 text-primary" />
               ) : (
-                <ImageIcon className="w-6 h-6 text-[#555555]" />
+                <ImageIcon className="w-6 h-6 text-text-muted" />
               )}
             </div>
-            <p className="text-sm text-[#999999] mb-1">
+            <p className="text-sm text-text-secondary mb-1">
               {isDragOver ? "Drop your image here" : "Drag & drop an image, or click to browse"}
             </p>
-            <p className="text-xs text-[#555555]">
+            <p className="text-xs text-text-muted">
               JPEG, PNG, or WebP • Max 5MB
             </p>
           </>

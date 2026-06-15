@@ -31,7 +31,7 @@
 
 @layer base {
   * {
-    @apply border-[#2A2A2A];
+    @apply border-border-subtle;
   }
 
   body {
