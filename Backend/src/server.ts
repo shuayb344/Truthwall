@@ -15,6 +15,7 @@ import startCronJobs from "./utils/cronJobs.js";
 import { createServer } from "http";
 import bookmarkRouter from "./routes/bookmark.routes.js";
 import adminRouter from "./routes/admin.routes.js";
+import profileRouter from "./routes/profile.routes.js";
 
 const app = express();
 const httpServer = createServer(app)
@@ -37,6 +38,7 @@ app.use("/api/upload", uploadRouter);
 app.use("/api/notifications", notificationRouter);
 app.use("/api/bookmarks", bookmarkRouter);
 app.use("/api/admin", adminRouter);
+app.use("/api/profile", profileRouter);
  
 
 app.use((_req, res) => {

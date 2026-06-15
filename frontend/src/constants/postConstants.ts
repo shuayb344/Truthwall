@@ -15,3 +15,4 @@ export const reactionConfig: { type: ReactionType; icon: typeof Heart; label: st
   { type: "stay_strong", icon: Shield, label: "Stay Strong", activeColor: "text-emerald-400" },
   { type: "sending_strength", icon: Sparkles, label: "Sending Strength", activeColor: "text-amber-400" },
 ];
+
