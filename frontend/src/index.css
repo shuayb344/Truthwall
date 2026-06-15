@@ -6,25 +6,25 @@
   --font-heading: 'Sora', sans-serif;
   --font-sans: 'Inter', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
-  
+
   --color-background: #080808;
   --color-surface: #111111;
   --color-elevated: #1A1A1A;
   --color-overlay: #1F1F1F;
-  
+
   --color-border-subtle: #1E1E1E;
   --color-border-default: #2A2A2A;
   --color-border-focus: #E03030;
-  
+
   --color-primary: #E03030;
   --color-primary-hover: #C42020;
   --color-primary-soft: #FF6B6B;
-  
+
   --color-text-primary: #F5F5F5;
   --color-text-secondary: #999999;
   --color-text-muted: #555555;
   --color-text-alias: #FF6B6B;
-  
+
   --color-accent-teal: #2DD4BF;
   --color-accent-gold: #F59E0B;
 }
@@ -44,11 +44,18 @@
     display: none;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     @apply font-heading tracking-tight;
   }
 
-  code, pre, .font-mono {
+  code,
+  pre,
+  .font-mono {
     @apply font-mono text-text-alias;
   }
 }
@@ -57,7 +64,7 @@
   .red-crack {
     position: relative;
   }
-  
+
   .red-crack::before {
     content: '';
     position: absolute;
@@ -73,16 +80,34 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  
+
   .confessional-card {
     @apply bg-surface border border-border-default transition-all duration-300;
   }
-  
+
   .confessional-card:hover {
     @apply border-primary/20 bg-elevated;
     box-shadow: 0 0 20px rgba(224, 48, 48, 0.05);
   }
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(239, 68, 68, 0.35);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(239, 68, 68, 0.7);
 }
