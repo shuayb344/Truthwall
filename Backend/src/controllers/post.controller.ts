@@ -1,5 +1,5 @@
 import type { Request, Response } from "express";
-import { createPost , getFeed , getPostById , deletePost} from "../services/post.service.js";
+import { createPost , getFeed , getPostById , deletePost, reportPost } from "../services/post.service.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 
 export const createPostController = asyncHandler(async (req: Request, res: Response) => {
@@ -19,5 +19,11 @@ export const getPostByIdController = asyncHandler(async (req: Request, res: Resp
 
 export const deletePostController = asyncHandler(async (req: Request, res: Response) => {
   const result = await deletePost(req.params.id as string, req.user!);
+  res.status(200).json(result);
+});
+
+export const reportPostController = asyncHandler(async (req: Request, res: Response) => {
+  const reason = req.body.reason;
+  const result = await reportPost(req.params.id as string, req.user!, reason);
   res.status(200).json(result);
 });

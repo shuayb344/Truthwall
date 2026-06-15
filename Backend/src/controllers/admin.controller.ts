@@ -1,12 +1,17 @@
 import type { Request, Response } from "express";
 import { asyncHandler } from "../utils/asyncHandler.js";
-import { getReports, removePost, banUser, unbanUser } from "../services/admin.service.js";
+import { getReports, removePost, banUser, unbanUser, getStats, getUsers, resolveReport } from "../services/admin.service.js";
  
 export const getReportsHandler = asyncHandler(async (_req: Request, res: Response) => {
   const reports = await getReports();
   res.status(200).json(reports);
 });
- 
+
+export const resolveReportHandler = asyncHandler(async (req: Request, res: Response) => {
+  const result = await resolveReport(req.params.id as string);
+  res.status(200).json(result);
+});
+
 export const removePostHandler = asyncHandler(async (req: Request, res: Response) => {
   const result = await removePost(req.params.id as string);
   res.status(200).json(result);
@@ -20,4 +25,14 @@ export const banUserHandler = asyncHandler(async (req: Request, res: Response) =
 export const unbanUserHandler = asyncHandler(async (req: Request, res: Response) => {
   const result = await unbanUser(req.params.id as string);
   res.status(200).json(result);
+});
+
+export const getUsersHandler = asyncHandler(async (_req: Request, res: Response) => {
+  const users = await getUsers();
+  res.status(200).json(users);
+});
+
+export const getStatsHandler = asyncHandler(async (_req: Request, res: Response) => {
+  const stats = await getStats();
+  res.status(200).json(stats);
 });
