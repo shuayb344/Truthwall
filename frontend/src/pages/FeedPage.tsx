@@ -25,7 +25,7 @@ const FeedPage = () => {
 
   const posts = data?.pages.flatMap((page) => page.posts) ?? [];
 
-  // Infinite scroll with IntersectionObserver
+
   const observerRef = useRef<IntersectionObserver | null>(null);
   const sentinelRef = useCallback(
     (node: HTMLDivElement | null) => {
@@ -64,7 +64,6 @@ const FeedPage = () => {
 
       {/* Posts list */}
       <div className="px-5 py-4 space-y-4">
-        {/* Loading state */}
         {isLoading && (
           <>
             {[1, 2, 3, 4].map((i) => (
@@ -72,8 +71,6 @@ const FeedPage = () => {
             ))}
           </>
         )}
-
-        {/* Error state */}
         {isError && !isLoading && (
           <div className="flex flex-col items-center py-16 text-center">
             <p className="text-[#A0A0B8] mb-2">Something went wrong loading the feed.</p>
@@ -86,20 +83,17 @@ const FeedPage = () => {
           </div>
         )}
 
-        {/* Empty state */}
         {!isLoading && !isError && posts.length === 0 && (
           <FeedEmptyState hasFilter={category !== "all"} />
         )}
 
-        {/* Post cards */}
         {posts.map((post) => (
           <PostCard key={post._id} post={post} />
         ))}
 
-        {/* Infinite scroll sentinel */}
+
         <div ref={sentinelRef} />
 
-        {/* Loading more indicator */}
         {isFetchingNextPage && (
           <div className="flex items-center justify-center py-6">
             <Loader2 className="w-5 h-5 text-[#7C6FF7] animate-spin" />
@@ -107,7 +101,6 @@ const FeedPage = () => {
           </div>
         )}
 
-        {/* End of feed */}
         {!hasNextPage && posts.length > 0 && !isLoading && (
           <div className="text-center py-8">
             <p className="text-xs text-[#606078]">

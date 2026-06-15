@@ -1,12 +1,12 @@
 import cloudinary from "../config/cloudinary.js";
 import { AppError } from "./appError.js";
 
- 
+
 interface UploadResult {
   url: string;
   publicId: string;
 }
- 
+
 const uploadToCloudinary = (
   buffer: Buffer,
   folder: string = "truthwall"
@@ -16,9 +16,9 @@ const uploadToCloudinary = (
       {
         folder,
         transformation: [
-          { width: 1200, crop: "limit" },   // cap width at 1200px
-          { quality: "auto" },               // auto compress
-          { fetch_format: "auto" },          // serve webp where supported
+          { width: 1200, crop: "limit" },
+          { quality: "auto" },
+          { fetch_format: "auto" },
         ],
       },
       (error, result) => {
@@ -34,5 +34,5 @@ const uploadToCloudinary = (
     stream.end(buffer);
   });
 };
- 
+
 export default uploadToCloudinary;

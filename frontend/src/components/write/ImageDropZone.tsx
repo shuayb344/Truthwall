@@ -75,7 +75,7 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
     onImageChange(null);
   };
 
-  // Show preview if image is uploaded
+
   if (imageUrl) {
     return (
       <div>
@@ -112,11 +112,10 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
         onClick={() => fileInputRef.current?.click()}
-        className={`relative flex flex-col items-center justify-center py-10 px-6 rounded-xl border-2 border-dashed cursor-pointer transition-all ${
-          isDragOver
+        className={`relative flex flex-col items-center justify-center py-10 px-6 rounded-xl border-2 border-dashed cursor-pointer transition-all ${isDragOver
             ? "border-[#7C6FF7] bg-[#7C6FF7]/5"
             : "border-[#2A2A3E] hover:border-[#3A3A4E] bg-[#12121A]/50"
-        } ${uploadMutation.isPending ? "pointer-events-none opacity-60" : ""}`}
+          } ${uploadMutation.isPending ? "pointer-events-none opacity-60" : ""}`}
       >
         {uploadMutation.isPending ? (
           <>
@@ -125,9 +124,8 @@ const ImageDropZone = ({ imageUrl, onImageChange }: ImageDropZoneProps) => {
           </>
         ) : (
           <>
-            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${
-              isDragOver ? "bg-[#7C6FF7]/20" : "bg-[#1C1C28]"
-            }`}>
+            <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 transition-colors ${isDragOver ? "bg-[#7C6FF7]/20" : "bg-[#1C1C28]"
+              }`}>
               {isDragOver ? (
                 <Upload className="w-6 h-6 text-[#7C6FF7]" />
               ) : (
