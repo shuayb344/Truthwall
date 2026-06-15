@@ -1,3 +1,4 @@
+import { Trash2 } from "lucide-react";
 import type { Post } from "@/types";
 import { useNavigate } from "react-router-dom";
 import { formatDistanceToNow } from "date-fns";
@@ -5,14 +6,20 @@ import { categoryConfig } from "@/constants/postConstants";
 import { usePostActions } from "@/hooks/usePostActions";
 import CrisisBanner from "@/components/post/CrisisBanner";
 import PostReactions from "@/components/post/PostReactions";
+import useAuthStore from "@/store/authStore";
 
 interface PostCardProps {
   post: Post;
 }
 
 const PostCard = ({ post }: PostCardProps) => {
+  const { user } = useAuthStore();
   const navigate = useNavigate();
-  const { handleReaction, handleBookmark, isReactionPending, isBookmarkPending } = usePostActions(post);
+  const { handleReaction, handleBookmark, handleDelete, isReactionPending, isBookmarkPending, isDeletePending } = usePostActions(post);
+
+  const isAuthor = user?._id === post.authorId;
+  const isAdmin = user?.role === "admin";
+  const canDelete = isAuthor || isAdmin;
 
   const cat = categoryConfig[post.category] || {
     label: post.category,
@@ -40,9 +47,21 @@ const PostCard = ({ post }: PostCardProps) => {
             <span className="text-[#606078] text-xs">•</span>
             <span className="text-xs text-[#606078]">{timeAgo} ago</span>
           </div>
-          <span className={`text-xs px-2.5 py-1 rounded-full font-medium border ${cat.bg} ${cat.color}`}>
-            {cat.label}
-          </span>
+          <div className="flex items-center gap-2">
+            {canDelete && (
+              <button
+                onClick={handleDelete}
+                disabled={isDeletePending}
+                className="p-1.5 rounded-lg text-rose-500/50 hover:text-rose-500 hover:bg-rose-500/10 transition-all disabled:opacity-50"
+                title="Delete Post"
+              >
+                <Trash2 size={16} />
+              </button>
+            )}
+            <span className={`text-xs px-2.5 py-1 rounded-full font-medium border ${cat.bg} ${cat.color}`}>
+              {cat.label}
+            </span>
+          </div>
         </div>
 
         {/* Content */}
@@ -81,4 +100,3 @@ const PostCard = ({ post }: PostCardProps) => {
 };
 
 export default PostCard;
-

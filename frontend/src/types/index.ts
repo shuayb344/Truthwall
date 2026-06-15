@@ -1,11 +1,12 @@
 
 export interface User {
-  id: string;
+  _id: string; // Changed from id to _id to match MongoDB
   email: string;
   alias: string;
   avatar?: string;
   empathyScore: number;
   role: "user" | "admin";
+  isBanned?: boolean;
 }
  
 export type Category = "mental-health" | "relationships" | "work" | "family" | "identity";
@@ -13,15 +14,16 @@ export type ReactionType = "feel_this" | "not_alone" | "stay_strong" | "sending_
  
 export interface Post {
   _id: string;
-  isBookmarked?: boolean;
+  authorId: string;
+  authorAlias: string;
   content: string;
   image?: string;
   category: Category;
-  authorAlias: string;
   reactionCounts: Record<ReactionType, number>;
   commentCount: number;
   expiresAt: string;
   isPermanent: boolean;
+  isBookmarked?: boolean;
   crisis: {
     flagged: boolean;
     severity: "low" | "medium" | "high" | null;
@@ -33,6 +35,7 @@ export interface Comment {
   _id: string;
   postId: string;
   authorAlias: string;
+  authorId: string;
   content: string;
   parentId: string | null;
   likesCount: number;

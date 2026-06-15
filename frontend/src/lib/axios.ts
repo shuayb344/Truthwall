@@ -22,10 +22,16 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      useAuthStore.getState().logout();
-      window.location.href = "/auth";
+      const isAuthPage = window.location.pathname === "/auth";
+      const isAuthRequest = error.config.url?.includes("/auth/login") || error.config.url?.includes("/auth/register");
+
+      if (!isAuthPage && !isAuthRequest) {
+        useAuthStore.getState().logout();
+        window.location.href = "/auth";
+      }
     }
     return Promise.reject(error);
   }
 );
+
 export default api;
