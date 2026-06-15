@@ -2,24 +2,25 @@ import { useNavigate, Link } from "react-router-dom";
 import useAuthStore from "@/store/authStore";
 import logo from "@/assets/logo.png";
 import {
-  Home,
-  Compass,
-  Bookmark,
+  House,
   Bell,
   User,
+  Shield,
 } from "lucide-react";
+import { useNotifications } from "@/hooks/useNotifications";
 
 const navItems = [
-  { icon: Home, label: "Feed", path: "/feed" },
-  { icon: Compass, label: "Explore", path: "/explore" },
-  { icon: Bookmark, label: "Bookmarks", path: "/bookmarks", requireAuth: true },
-  { icon: Bell, label: "Notifications", path: "/notifications", requireAuth: true },
+  { icon: House, label: "Feed", path: "/feed" },
+  { icon: Bell, label: "Notifications", path: "/notifications", requireAuth: true, isNotification: true },
   { icon: User, label: "Profile", path: "/profile", requireAuth: true },
+  { icon: Shield, label: "Admin", path: "/admin", requireAuth: true, isAdmin: true },
 ];
 
 const FeedSidebar = () => {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useAuthStore();
+  const { data: notificationData } = useNotifications();
+  const unreadCount = notificationData?.unreadCount ?? 0;
 
   return (
     <aside className="hidden lg:flex flex-col w-[220px] flex-shrink-0 sticky top-0 h-screen py-6 pr-4">
@@ -38,23 +39,31 @@ const FeedSidebar = () => {
       <nav className="flex flex-col gap-1 flex-1">
         {navItems.map((item) => {
           if (item.requireAuth && !isAuthenticated) return null;
+          if (item.isAdmin && user?.role !== "admin") return null;
           const Icon = item.icon;
           const isActive = window.location.pathname === item.path;
           return (
             <button
               key={item.path}
               onClick={() => navigate(item.path)}
-              className={`flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all group ${
-                isActive
+              className={`flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-all group relative ${isActive
                   ? "text-[#EEEEF5] bg-[#1C1C28]"
                   : "text-[#A0A0B8] hover:text-[#EEEEF5] hover:bg-[#1C1C28]/50"
-              }`}
+                }`}
             >
-              {isActive && (
-                <span className="absolute left-0 w-[3px] h-4 rounded-r-full bg-[#7C6FF7]" />
+              <div className="flex items-center gap-3">
+                {isActive && (
+                  <span className="absolute left-0 w-[3px] h-4 rounded-r-full bg-[#7C6FF7]" />
+                )}
+                <Icon className={`w-[18px] h-[18px] ${isActive ? "text-[#7C6FF7]" : ""}`} />
+                {item.label}
+              </div>
+
+              {item.isNotification && unreadCount > 0 && (
+                <span className="flex items-center justify-center min-w-[18px] h-[18px] px-1 rounded-full bg-[#7C6FF7] text-[10px] font-bold text-white transition-transform group-hover:scale-110">
+                  {unreadCount > 99 ? "99+" : unreadCount}
+                </span>
               )}
-              <Icon className={`w-[18px] h-[18px] ${isActive ? "text-[#7C6FF7]" : ""}`} />
-              {item.label}
             </button>
           );
         })}

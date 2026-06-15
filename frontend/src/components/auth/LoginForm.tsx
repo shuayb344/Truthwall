@@ -27,6 +27,10 @@ const LoginForm = () => {
     formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
+    defaultValues: {
+      email: "",
+      password: "",
+    },
   });
 
   const onLogin = async (data: LoginFormValues) => {
@@ -49,6 +53,7 @@ const LoginForm = () => {
           {...register("email")}
           type="email"
           placeholder="you@example.com"
+          autoComplete="off"
           className="w-full px-4 py-3 rounded-xl bg-[#12121A] border border-[#2A2A3E] text-[#EEEEF5] placeholder-[#606078] focus:outline-none focus:border-[#7C6FF7] transition-colors text-sm"
         />
         {errors.email && (
@@ -62,6 +67,7 @@ const LoginForm = () => {
             {...register("password")}
             type={showPassword ? "text" : "password"}
             placeholder="••••••••"
+            autoComplete="off"
             className="w-full px-4 py-3 rounded-xl bg-[#12121A] border border-[#2A2A3E] text-[#EEEEF5] placeholder-[#606078] focus:outline-none focus:border-[#7C6FF7] transition-colors text-sm pr-10"
           />
           <button

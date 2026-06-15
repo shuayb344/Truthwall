@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import { Home, Compass, PenSquare, Bell, User, LogIn } from "lucide-react";
+import { House, PenSquare, Bell, User, LogIn } from "lucide-react";
 import useAuthStore from "@/store/authStore";
 import logo from "@/assets/logo.png";
 
@@ -41,12 +41,8 @@ const FeedMobileNav = () => {
       <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-[#2A2A3E] bg-[#0A0A0F]/90 backdrop-blur-md">
         <div className="flex items-center justify-around h-14">
           <button onClick={() => navigate("/feed")} className="flex flex-col items-center gap-0.5 text-[#7C6FF7]">
-            <Home className="w-5 h-5" />
+            <House className="w-5 h-5" />
             <span className="text-[10px]">Feed</span>
-          </button>
-          <button onClick={() => navigate("/explore")} className="flex flex-col items-center gap-0.5 text-[#606078]">
-            <Compass className="w-5 h-5" />
-            <span className="text-[10px]">Explore</span>
           </button>
           {isAuthenticated && (
             <button
