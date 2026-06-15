@@ -90,3 +90,13 @@ export const toggleBookmark = async (
   const res = await api.post(`/bookmarks/${postId}`);
   return res.data;
 };
+
+export const deletePost = async (postId: string): Promise<{ message: string }> => {
+  const res = await api.delete(`/posts/${postId}`);
+  return res.data;
+};
+
+export const reportPost = async (postId: string, reason: string): Promise<{ message: string }> => {
+  const res = await api.post(`/posts/${postId}/report`, { reason });
+  return res.data;
+};
