@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createCommentHandler, getCommentsHandler, toggleReactionHandler, toggleCommentLikeHandler } from "../controllers/comment.controller.js";
 import { validate } from "../middleware/validate.middleware.js";
-import { createCommentSchema, commentQuerySchema, reactionSchema } from "../validators/comment,validator.js";
+import { createCommentSchema, commentQuerySchema, reactionSchema } from "../validators/comment.validator.js";
 import { protect, optionalProtect } from "../middleware/auth.middleware.js";
 
 

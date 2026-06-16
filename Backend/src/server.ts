@@ -17,7 +17,7 @@ import bookmarkRouter from "./routes/bookmark.routes.js";
 import adminRouter from "./routes/admin.routes.js";
 import profileRouter from "./routes/profile.routes.js";
 import logger from "./utils/logger.js";
-import healthRouter from "./routes/health.routes..js";
+import healthRouter from "./routes/health.routes.js";
 
 const app = express();
 const httpServer = createServer(app)

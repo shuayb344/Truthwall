@@ -3,7 +3,7 @@ import Post from "../models/Post.js";
 import CommentLike from "../models/CommentLike.js";
 import { AppError } from "../utils/appError.js";
 import type { IUser } from "../models/User.js";
-import type { CreateCommentInput, CommentQueryInput } from "../validators/comment,validator.js";
+import type { CreateCommentInput, CommentQueryInput } from "../validators/comment.validator.js";
 import { createNotification } from "./notification.service.js";
 
 export const createComment = async (user: IUser, postId: string, body: CreateCommentInput): Promise<unknown> => {

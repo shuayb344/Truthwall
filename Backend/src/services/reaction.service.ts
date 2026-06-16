@@ -1,7 +1,7 @@
 import Post from "../models/Post.js";
 import Reaction from "../models/Reaction.js";
 import type { IUser } from "../models/User.js";
-import type { ReactionInput } from "../validators/comment,validator.js";
+import type { ReactionInput } from "../validators/comment.validator.js";
 import { AppError } from "../utils/appError.js";
 import { createNotification } from "./notification.service.js";
 import { decrementEmpathyScore , incrementEmpathyScore } from "./empathy.service.js";
