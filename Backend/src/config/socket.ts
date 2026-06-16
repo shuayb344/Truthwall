@@ -2,6 +2,7 @@ import { Server } from "socket.io";
 import type {Server as HTTPServer} from "http";
 import { CLIENT_URL } from "./env.js";
 import type { INotification } from "../models/notification.js";
+import logger from "../utils/logger.js";
 
 let io: Server;
 
@@ -17,17 +18,17 @@ export const initSocket = (httpServer: HTTPServer): Server => {
     });
 
     io.on("connection", (socket) => {
-        console.log("New client connected: " + socket.id);
+        logger.info("New client connected: " + socket.id);
         socket.on("register", (userId: string) => {
             connectedUsers.set(socket.id, userId);
-            console.log(`User ${userId} registered for notifications with socket ${socket.id}`);
+            logger.info(`User ${userId} registered for notifications with socket ${socket.id}`);
         });
         
         socket.on("disconnect", () => {
             for (const [sockId, userId] of connectedUsers.entries()) {
                 if (sockId === socket.id) {
                     connectedUsers.delete(sockId);
-                    console.log(`User ${userId} disconnected from socket ${sockId}`);
+                    logger.info(`User ${userId} disconnected from socket ${sockId}`);
                     break;
                 }
             }
@@ -43,9 +44,9 @@ export const sendNotificationToUser = (userId: string, notification: INotificati
   const socketId = connectedUsers.get(userId);
   if (socketId && io) {
     io.to(socketId).emit("notification", notification);
-    console.log(`Sent notification to user ${userId} on socket ${socketId}`);
+    logger.info(`Sent notification to user ${userId} on socket ${socketId}`);
   } else {
-    console.log(`User ${userId} is not connected, cannot send notification`);
+    logger.info(`User ${userId} is not connected, cannot send notification`);
   }
 }
 

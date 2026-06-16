@@ -16,6 +16,7 @@ import { createServer } from "http";
 import bookmarkRouter from "./routes/bookmark.routes.js";
 import adminRouter from "./routes/admin.routes.js";
 import profileRouter from "./routes/profile.routes.js";
+import logger from "./utils/logger.js";
 
 const app = express();
 const httpServer = createServer(app)
@@ -49,6 +50,6 @@ app.use((_req, res) => {
 app.use(errorMiddleware);
 
 httpServer.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+  logger.info(`Server is running on port ${PORT}`);
 });
  

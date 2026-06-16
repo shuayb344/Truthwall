@@ -1,6 +1,6 @@
-
 import cron from "node-cron";
 import Post from "../models/Post.js";
+import logger from "./logger.js";
  
 const startCronJobs = (): void => {
 
@@ -12,14 +12,14 @@ const startCronJobs = (): void => {
       });
  
       if (result.deletedCount > 0) {
-        console.log(`🗑️  Expired ${result.deletedCount} post(s)`);
+        logger.info(`🗑️  Expired ${result.deletedCount} post(s)`);
       }
     } catch (error) {
-      console.error("Cron job error (post expiry):", error);
+      logger.error("Cron job error (post expiry):", error);
     }
   });
  
-  console.log("⏰ Cron jobs started");
+  logger.info("⏰ Cron jobs started");
 };
  
 export default startCronJobs;

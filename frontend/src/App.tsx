@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
 import AuthPage from "@/pages/AuthPage";
 import ProfilePage from "@/pages/ProfilePage";
@@ -11,6 +11,7 @@ import FeedPage from "./pages/FeedPage";
 import PostPage from "./pages/PostPage";
 import NotificationsPage from "./pages/NotificationsPage";
 import MainLayout from "@/components/layout/MainLayout";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -46,7 +47,7 @@ const App = () => {
             </Route>
           </Route>
 
-          <Route path="*" element={<Navigate to="/feed" replace />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </BrowserRouter>
       <Toaster position="bottom-center"
