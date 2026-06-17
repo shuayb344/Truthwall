@@ -38,14 +38,17 @@ const PostCard = ({ post }: PostCardProps) => {
       {post.crisis?.flagged && <CrisisBanner />}
 
       <div className="p-5">
-        {/* Header: alias + time + category */}
-        <div className="flex items-center justify-between mb-3">
-          <div className="flex items-center gap-2">
-            <span className="font-mono text-sm font-semibold text-text-alias">
-              {post.authorAlias}
-            </span>
-            <span className="text-[#555555] text-xs">•</span>
-            <span className="text-xs text-[#555555]">{timeAgo} ago</span>
+        <div className="flex items-center justify-between mb-4">
+          <div className="flex items-center gap-3">
+            <div className="w-9 h-9 rounded-full bg-[#E03030]/15 border border-[#E03030]/20 flex items-center justify-center text-[10px] font-heading text-[#E03030] flex-shrink-0">
+              {post.authorAlias.slice(0, 2).toUpperCase()}
+            </div>
+            <div className="flex flex-col">
+              <span className="font-mono text-xs font-semibold text-text-alias leading-tight">
+                @{post.authorAlias}
+              </span>
+              <span className="text-[10px] text-[#555555]">{timeAgo} ago</span>
+            </div>
           </div>
           <div className="flex items-center gap-2">
             {canDelete && (

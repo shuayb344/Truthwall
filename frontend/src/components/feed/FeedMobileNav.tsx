@@ -1,20 +1,23 @@
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { House, PenSquare, Bell, User, LogIn, LogOut, Shield } from "lucide-react";
 import useAuthStore from "@/store/authStore";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 import logo from "@/assets/logo.png";
 
 const FeedMobileNav = () => {
   const { isAuthenticated, logout, user } = useAuthStore();
   const navigate = useNavigate();
   const location = useLocation();
+  const scrollDirection = useScrollDirection();
 
   const isActive = (path: string) => location.pathname === path;
   const isAdmin = user?.role === "admin";
+  const isHidden = scrollDirection === "down";
 
   return (
     <>
       {/* Top bar - mobile only */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-50 border-b border-[#2A2A2A] bg-[#080808]/90 backdrop-blur-md">
+      <header className={`lg:hidden fixed top-0 left-0 right-0 z-50 border-b border-[#2A2A2A] bg-[#080808]/90 backdrop-blur-md transition-transform duration-300 ${isHidden ? "-translate-y-full" : "translate-y-0"}`}>
         <div className="flex items-center justify-between px-4 h-14">
           <Link to="/" className="flex items-center gap-1.5">
             <img src={logo} alt="Logo" className="w-7 h-7 rounded-lg object-contain" />
@@ -53,7 +56,7 @@ const FeedMobileNav = () => {
       </header>
 
       {/* Bottom bar - mobile only */}
-      <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-[#2A2A2A] bg-[#080808]/90 backdrop-blur-md">
+      <nav className={`lg:hidden fixed bottom-0 left-0 right-0 z-50 border-t border-[#2A2A2A] bg-[#080808]/90 backdrop-blur-md transition-transform duration-300 ${isHidden ? "translate-y-full" : "translate-y-0"}`}>
         <div className="flex items-center justify-around h-14">
           <button
             onClick={() => navigate("/feed")}
