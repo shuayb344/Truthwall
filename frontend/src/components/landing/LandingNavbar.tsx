@@ -12,7 +12,7 @@ const LandingNavbar = ({ onGetStarted }: LandingNavbarProps) => {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border-default/50 bg-background/80 backdrop-blur-md">
       <div className="max-w-6xl mx-auto px-4 md:px-6 h-16 flex items-center justify-between">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -29,7 +29,7 @@ const LandingNavbar = ({ onGetStarted }: LandingNavbarProps) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
             onClick={() => navigate("/auth")}
-            className="hidden sm:block text-sm text-text-secondary hover:text-text-primary transition-colors"
+            className="hidden sm:block text-sm cursor-pointer text-text-secondary hover:text-text-primary transition-colors"
           >
             Sign in
           </motion.button>
@@ -38,7 +38,7 @@ const LandingNavbar = ({ onGetStarted }: LandingNavbarProps) => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             onClick={onGetStarted}
-            className="text-sm px-4 py-2 rounded-full bg-primary hover:bg-primary-hover text-white transition-all shadow-lg shadow-primary/20"
+            className="text-sm px-4 py-2 rounded-full cursor-pointer bg-primary hover:bg-primary-hover text-white transition-all shadow-lg shadow-primary/20"
           >
             Get started
           </motion.button>

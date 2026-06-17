@@ -51,7 +51,7 @@ const LandingSamplePosts = ({ onCTA }: LandingSamplePostsProps) => {
     <section className="pb-32 px-6">
       <div className="max-w-6xl mx-auto">
         {/* Animated Title */}
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, letterSpacing: "0.2em" }}
           whileInView={{ opacity: 1, letterSpacing: "normal" }}
           viewport={{ once: true }}
@@ -67,21 +67,21 @@ const LandingSamplePosts = ({ onCTA }: LandingSamplePostsProps) => {
             return (
               <motion.div
                 key={i}
-                initial={{ 
-                  opacity: 0, 
+                initial={{
+                  opacity: 0,
                   x: isLeft ? -50 : 50,
-                  rotate: isLeft ? -2 : 2 
+                  rotate: isLeft ? -2 : 2
                 }}
-                whileInView={{ 
-                  opacity: 1, 
+                whileInView={{
+                  opacity: 1,
                   x: 0,
-                  rotate: 0 
+                  rotate: 0
                 }}
                 viewport={{ once: true }}
-                transition={{ 
-                  duration: 0.8, 
+                transition={{
+                  duration: 0.8,
                   delay: i * 0.15,
-                  ease: "easeOut" 
+                  ease: "easeOut"
                 }}
                 className="relative"
               >
@@ -97,8 +97,8 @@ const LandingSamplePosts = ({ onCTA }: LandingSamplePostsProps) => {
                     ease: "easeInOut",
                     delay: i * 0.5
                   }}
-                  whileHover={{ 
-                    y: -6, 
+                  whileHover={{
+                    y: -6,
                     boxShadow: "0 0 30px rgba(224, 48, 48, 0.2)",
                     borderColor: "rgba(224, 48, 48, 0.4)"
                   }}
@@ -108,7 +108,12 @@ const LandingSamplePosts = ({ onCTA }: LandingSamplePostsProps) => {
                     <div className="absolute inset-0 backdrop-blur-sm bg-background/60 z-10" />
                   )}
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-mono text-xs text-text-alias">{post.alias}</span>
+                    <div className="flex items-center gap-2">
+                       <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-[10px] font-heading text-primary flex-shrink-0">
+                        {post.alias.slice(0, 2).toUpperCase()}
+                      </div>
+                      <span className="font-mono text-xs text-text-alias">{post.alias}</span>
+                    </div>
                     <span className={`text-xs px-3 py-1 rounded-full font-medium ${categoryColors[post.category]}`}>
                       {post.category}
                     </span>
@@ -129,14 +134,14 @@ const LandingSamplePosts = ({ onCTA }: LandingSamplePostsProps) => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ 
+              transition={{
                 type: "spring",
                 stiffness: 260,
                 damping: 20,
-                delay: 1.2 
+                delay: 1.2
               }}
               onClick={onCTA}
-              className="pointer-events-auto inline-flex items-center gap-2 px-6 py-3 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow-xl shadow-primary/30 transition-all hover:scale-105 active:scale-95"
+              className="pointer-events-auto inline-flex cursor-pointer items-center gap-2 px-6 py-3 rounded-full bg-primary hover:bg-primary-hover text-white text-sm font-semibold shadow-xl shadow-primary/30 transition-all hover:scale-105 active:scale-95"
             >
               Join to read more
               <ArrowRight className="w-4 h-4" />
