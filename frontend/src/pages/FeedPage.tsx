@@ -6,10 +6,13 @@ import PostCard from "@/components/feed/PostCard";
 import PostCardSkeleton from "@/components/feed/PostCardSkeleton";
 import FeedEmptyState from "@/components/feed/FeedEmptyState";
 import { Loader2 } from "lucide-react";
+import { useScrollDirection } from "@/hooks/useScrollDirection";
 
 const FeedPage = () => {
   const [category, setCategory] = useState("all");
   const [sort, setSort] = useState<"latest" | "trending">("latest");
+  const scrollDirection = useScrollDirection();
+  const isHidden = scrollDirection === "down";
 
   const {
     data,
@@ -49,11 +52,14 @@ const FeedPage = () => {
   return (
     <>
       {/* Feed header */}
-      <div className="sticky top-14 lg:top-0 z-30 bg-[#080808]/80 backdrop-blur-md border-b border-[#2A2A2A]/50 ">
-        <div className="px-5 pt-5 pb-4">
-          <div className="flex items-center justify-between mb-4">
-            <h1 className="text-xl font-heading text-[#F5F5F5]">Home Feed</h1>
-            <FeedSortToggle activeSort={sort} onSortChange={setSort} />
+      <div className={`sticky ${isHidden ? "top-0" : "top-14"} lg:top-0 z-30 bg-[#080808]/80 backdrop-blur-md border-b border-[#2A2A2A]/50 transition-[top] duration-300`}>
+        <div className="px-4 lg:px-5 pt-3 pb-2 lg:pt-5 lg:pb-4">
+          <div className="flex items-center justify-between mb-3 lg:mb-4">
+            <h1 className="hidden lg:block text-xl font-heading text-[#F5F5F5]">Home Feed</h1>
+            <div className="lg:w-auto w-full flex justify-between items-center lg:block">
+              <span className="lg:hidden text-lg font-heading text-[#F5F5F5]">Feed</span>
+              <FeedSortToggle activeSort={sort} onSortChange={setSort} />
+            </div>
           </div>
           <FeedCategoryTabs
             activeCategory={category}
