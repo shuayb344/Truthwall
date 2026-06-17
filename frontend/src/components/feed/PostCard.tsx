@@ -43,11 +43,11 @@ const PostCard = ({ post }: PostCardProps) => {
             <div className="w-9 h-9 rounded-full bg-[#E03030]/15 border border-[#E03030]/20 flex items-center justify-center text-[10px] font-heading text-[#E03030] flex-shrink-0">
               {post.authorAlias.slice(0, 2).toUpperCase()}
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:gap-2">
               <span className="font-mono text-xs font-semibold text-text-alias leading-tight">
                 @{post.authorAlias}
               </span>
-              <span className="text-[10px] text-[#555555]">{timeAgo} ago</span>
+              <span className="text-[10px] lg:text-[12px] text-[#555555]">{timeAgo} ago</span>
             </div>
           </div>
           <div className="flex items-center gap-2">
