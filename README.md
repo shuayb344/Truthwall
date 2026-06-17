@@ -3,7 +3,7 @@
 
 TruthWall is a premium, anonymous social platform designed as a modern "digital confessional." It provides a safe, high-contrast emotional space for users to share their deepest thoughts, secrets, and life experiences without the fear of judgment.
 
-![TruthWall Preview](https://truthwall-seven.vercel.app/og-image.png) *(Note: Placeholder for actual OG image)*
+
 
 ## ✨ Key Features
 
