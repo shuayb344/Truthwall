@@ -1,0 +1,44 @@
+name: truthwall
+
+services:
+  backend:
+    build:
+      context: ./Backend
+      target: development
+    init: true
+
+    env_file:
+      - ./Backend/.env.development
+
+
+
+    ports:
+      - "127.0.0.1:5000:5000"
+
+    volumes:
+      - ./Backend/src:/app/src
+
+    restart: unless-stopped
+
+  frontend:
+    build:
+      context: ./frontend
+      target: development
+    init: true
+
+    env_file:
+      - ./frontend/.env.development
+
+    environment:
+      VITE_API_BASE_URL: http://localhost:5000/api
+
+    ports:
+      - "127.0.0.1:5173:5173"
+
+    volumes:
+      - ./frontend/src:/app/src
+
+    depends_on:
+      - backend
+
+    restart: unless-stopped
